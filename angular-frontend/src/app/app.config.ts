@@ -1,8 +1,15 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Routes } from '@angular/router';
+import {ApplicationConfig} from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
-import { routes } from './app.routes';
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }, // Handle unknown routes
+];
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [provideRouter(routes),
+    provideHttpClient(),]
 };
