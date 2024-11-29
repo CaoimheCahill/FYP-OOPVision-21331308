@@ -1,51 +1,129 @@
+// General Variables
+$primary-color: #fbc02d;
+$secondary-color: #B6E3FF;
+$text-color: #333;
+$button-color: #757575;
+
+// Toolbar Styles
+.custom-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .toolbar-logo {
+    height: 60px;
+  }
+
+  .toolbar-button {
+    margin-left: 1rem;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+}
+
+// Login Container Styles
 .login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem auto;
+  padding: 2rem;
   max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
+  background-color: #fff;
+  border-radius: 8px;
   text-align: center;
-  margin-bottom: 20px;
+
+  .logoSymbol {
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    color: $text-color;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .form-container {
+    width: 100%;
+
+    .full-width {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    mat-form-field {
+      width: 100%;
+
+      mat-label {
+        color: $text-color;
+      }
+
+      mat-error {
+        font-size: 0.85rem;
+        color: red;
+      }
+    }
+
+    button {
+      width: 100%;
+      background-color: $primary-color;
+      color: #fff;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+
+      &:disabled {
+        background-color: lighten($primary-color, 30%);
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  p {
+    margin-top: 1.5rem;
+    color: $text-color;
+    font-size: 0.9rem;
+    text-align: center;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.error {
-  color: red;
+// Footer Styles
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: $secondary-color;
+  color: $text-color;
   font-size: 0.9rem;
-}
-
-.btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  margin-top: 2rem;
 }

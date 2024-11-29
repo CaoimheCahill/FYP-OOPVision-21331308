@@ -1,43 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="./login.component.scss">
+</head>
+
+<body>
+
+<mat-toolbar class="custom-toolbar">
+  <div class="toolbar-left">
+    <img ngSrc="assets/logo_transparent.png" alt="Logo" class="toolbar-logo" height="365" width="928"/>
+  </div>
+
+  <div class="toolbar-right">
+    <button mat-stroked-button class="toolbar-button">Sign Up</button>
+    <button mat-stroked-button class="toolbar-button">Log In</button>
+  </div>
+</mat-toolbar>
+
+
 <div class="login-container">
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+    <img class="logoSymbol" ngSrc="assets/logo-noText.png" alt="ulSingles_symbol" height="397" width="398">
+    <h3>Log In</h3>
+    <div class="form-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" type="email" name="email" required [(ngModel)]="loginData.email" #email="ngModel" autocomplete="email">
+        <mat-error *ngIf="email.invalid && email.touched">Email is required</mat-error>
+      </mat-form-field>
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        class="form-control"
-        [(ngModel)]="email"
-        #emailInput="ngModel"
-        required
-        email
-      />
-      <div class="error" *ngIf="emailInput.invalid && emailInput.touched">
-        Please enter a valid email address.
-      </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" required [(ngModel)]="loginData.password" #password="ngModel" autocomplete="password">
+        <mat-error *ngIf="password.invalid && password.touched">Password is required</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log in</button>
     </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        class="form-control"
-        [(ngModel)]="password"
-        #passwordInput="ngModel"
-        required
-        minlength="6"
-      />
-      <div class="error" *ngIf="passwordInput.invalid && passwordInput.touched">
-        Password must be at least 6 characters long.
-      </div>
-    </div>
-
-    <button type="submit" class="btn" [disabled]="loginForm.invalid">
-      Login
-    </button>
+    <!-- Link to Registration page -->
+    <p>Don't have an account? <a routerLink="/registration">Register here</a></p>
   </form>
 </div>
+
+<footer class="footer">
+  © 2024 Copyright OOP Vision. All Rights Reserved
+</footer>
+
+</body>
+
+</html>
