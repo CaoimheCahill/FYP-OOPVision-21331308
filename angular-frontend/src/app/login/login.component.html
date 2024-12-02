@@ -28,16 +28,16 @@
   </div>
 
   <div class="toolbar-right">
-    <button mat-stroked-button class="toolbar-button">Sign Up</button>
-    <button mat-stroked-button class="toolbar-button">Log In</button>
+    <button mat-stroked-button class="toolbar-button" routerLink="/registration">Sign Up</button>
+    <button mat-stroked-button class="toolbar-button" routerLink="/login">Log In</button>
   </div>
 </mat-toolbar>
 
 
 <div class="login-container">
+  <img class="logoSymbol" src="assets/logo-noText.png" alt="ulSingles_symbol">
+  <h3>Log In</h3>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
-    <img class="logoSymbol" src="assets/logo-noText.png" alt="ulSingles_symbol" height="397" width="398">
-    <h3>Log In</h3>
     <div class="form-container">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
