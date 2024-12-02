@@ -1,12 +1,50 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Title} from '@angular/platform-browser';
+import {NgIf, NgOptimizedImage} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {Router, RouterLink} from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule,
+    NgIf,
+    RouterLink,
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+  readonly email = new FormControl('', [Validators.required, Validators.email]);
+  loginData = { email: '', password: '' };
+  constructor(private titleService: Title, private router: Router) {}
 
+  ngOnInit(): void {
+    this.titleService.setTitle('Login');
+  }
+
+  onSubmit(): void {
+    if (this.loginData.email && this.loginData.password) {
+      console.log('Login Data:', this.loginData);
+
+      // Simulate a successful login
+      alert('Login successful!');
+
+      // Navigate to the HomeComponent after successful login
+      this.router.navigate(['/home']);
+    } else {
+      alert('Please fill in all required fields');
+    }
+  }
 }
