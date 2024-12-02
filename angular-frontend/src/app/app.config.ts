@@ -1,15 +1,11 @@
-import { provideRouter, Routes } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import {ApplicationConfig} from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
-
-const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }, // Handle unknown routes
-];
+import {routes} from "./app.routes"
+import {provideAnimations} from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
-    provideHttpClient(),]
+    provideHttpClient(),
+    provideAnimations(),]
 };
