@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -13,4 +13,13 @@ export class UserService {
   register(user: any): Observable<any>{
     return this.http.post(`${this.baseUrl}/register`, user)
   }
+
+  login(loginData: { email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, loginData, {
+      responseType: 'arraybuffer',
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
+
 }
