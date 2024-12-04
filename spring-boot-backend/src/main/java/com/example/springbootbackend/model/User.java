@@ -1,9 +1,7 @@
 package com.example.springbootbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.springbootbackend.enums.UserRole;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -17,7 +15,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String userRole;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole = UserRole.USER;
 
     public int getId() {
         return id;
@@ -59,11 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public String getUserRole() {
+    public UserRole getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
 }
