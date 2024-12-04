@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -27,7 +28,7 @@ import {Title} from '@angular/platform-browser';
 export class RegistrationComponent implements OnInit{
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private titleService: Title, private router: Router) {
+  constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService) {
     this.registrationForm = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -54,14 +55,22 @@ export class RegistrationComponent implements OnInit{
 
   onSubmit(): void {
     if (this.registrationForm.valid) {
-      console.log('Form Submitted', this.registrationForm.value);
+      const user = this.registrationForm.value;
 
-      alert('Registration successful!');
+      this.userService.register(user).subscribe(
+        (response) => {
+          alert('Registration successful!');
+          console.log('User registered:', response);
 
-      this.router.navigate(['/home']);
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          console.error('Registration failed:', error);
+          alert('Registration failed. Please try again.');
+        }
+      );
     }else{
       alert('Please fill in all required fields');
     }
   }
-
 }
