@@ -13,11 +13,11 @@ export class UserService {
   constructor(private http: HttpClient, private configService: ConfigService) { }
 
   register(user: any): Observable<any>{
-    return this.http.post(`${this.configService.apiBaseUrl}/api/users/register`, user)
+    return this.http.post(`${this.configService.getApiBaseUrl()}/api/users/register`, user)
   }
 
   login(loginData: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.configService.apiBaseUrl}/api/users/login`, loginData, {
+    return this.http.post(`${this.configService.getApiBaseUrl()}/api/users/login`, loginData, {
       responseType: 'arraybuffer',
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });

@@ -1,28 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
-  private config: any;
+  private readonly apiBaseUrl: string;
 
-  constructor(private http: HttpClient) {}
-
-  loadConfig(): Promise<void> {
-    return this.http
-      .get('/assets/config.json')
-      .toPromise()
-      .then((config: any) => {
-        this.config = config;
-      })
-      .catch((error) => {
-        console.error('Could not load configuration', error);
-        this.config = {};
-      });
+  constructor() {
+    // Dynamically load environment variable from Azure Static Web Apps
+    this.apiBaseUrl = (window as any).apiBaseUrl || 'http://localhost:8080/api'; // Fallback for local development
   }
 
-  get apiBaseUrl(): string {
-    return this.config?.apiBaseUrl || 'http://localhost:8080'; // Fallback for local development
+  getApiBaseUrl(): string {
+    return this.apiBaseUrl;
   }
 }
