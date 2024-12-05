@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    }
+  ],
+  "responseOverrides": {
+    "index": {
+      "replace": {
+        "%apiBaseUrl%": "apiBaseUrl"
+      }
+    }
+  }
+}
