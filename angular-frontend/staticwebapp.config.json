@@ -7,8 +7,12 @@
       }
     }
   ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/api/*"]
+  },
   "responseOverrides": {
-    "index.html": {
+    "/index.html": {
       "replace": {
         "%apiBaseUrl%": "apiBaseUrl"
       }
