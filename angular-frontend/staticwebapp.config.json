@@ -2,9 +2,7 @@
   "routes": [
     {
       "route": "/*",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
+      "rewrite": "/index.html"
     }
   ],
   "navigationFallback": {
@@ -12,9 +10,9 @@
     "exclude": ["/api/*"]
   },
   "responseOverrides": {
-    "/index.html": {
+    "/assets/config.json": {
       "replace": {
-        "%apiBaseUrl%": "apiBaseUrl"
+        "%API_BASE_URL%": "apiBaseUrl"
       }
     }
   }
