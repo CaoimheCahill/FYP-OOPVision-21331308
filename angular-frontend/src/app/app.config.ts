@@ -5,14 +5,10 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import {ConfigService} from './service/config.service';
 
-function initializeApp(configService: ConfigService): () => Promise<void> {
-  return () => configService.loadConfig();
-}
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [ConfigService]},
     provideRouter(routes),
     provideHttpClient(),
     provideAnimations(),
