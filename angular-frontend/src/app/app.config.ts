@@ -6,12 +6,13 @@ import { routes } from './app.routes';
 
 // Function to retrieve the `apiBaseUrl` dynamically
 function getApiBaseUrl(): string {
-  const apiBaseUrl = (window as any).apiBaseUrl; // Access Azure-injected variable
+  const apiBaseUrl = (window as any).apiBaseUrl;
   if (!apiBaseUrl) {
-    console.warn('API_BASE_URL is not set. Using fallback value.');
+    console.warn('API_BASE_URL is not set. Using fallback.');
   }
-  return apiBaseUrl || 'http://localhost:8080'; // Fallback for local development
+  return apiBaseUrl || 'http://localhost:8080/api'; // Fallback
 }
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
