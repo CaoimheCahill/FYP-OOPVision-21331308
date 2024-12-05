@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../environments/environment.prod';
@@ -7,16 +7,16 @@ import {environment} from '../environments/environment.prod';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = environment.apiBaseUrl + '/api/users';
+  //private baseUrl = environment.apiBaseUrl + '/api/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, @Inject('API_BASE_URL') private baseUrl: string) { }
 
   register(user: any): Observable<any>{
-    return this.http.post(`${this.baseUrl}/register`, user)
+    return this.http.post(`${this.baseUrl}/api/users/register`, user)
   }
 
   login(loginData: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, loginData, {
+    return this.http.post(`${this.baseUrl}/api/users/login`, loginData, {
       responseType: 'arraybuffer',
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });

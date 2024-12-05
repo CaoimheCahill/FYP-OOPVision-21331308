@@ -9,10 +9,20 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+
+// Expose runtime configuration variables
+function getApiBaseUrl(): string {
+  const apiBaseUrl = (window as any).apiBaseUrl; // Access injected environment variable
+  if (!apiBaseUrl) {
+    console.error('API base URL not set in Azure environment variables.');
+  }
+  return apiBaseUrl || 'http://localhost:8080'; // Fallback for local development
+}
 
 bootstrapApplication(AppComponent, {
   providers: [
+    { provide: 'API_BASE_URL', useFactory: getApiBaseUrl },
     importProvidersFrom(
       RouterModule.forRoot([
         { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
