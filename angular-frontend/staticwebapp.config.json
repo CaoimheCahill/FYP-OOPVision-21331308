@@ -8,7 +8,7 @@
     }
   ],
   "responseOverrides": {
-    "index": {
+    "index.html": {
       "replace": {
         "%apiBaseUrl%": "apiBaseUrl"
       }
