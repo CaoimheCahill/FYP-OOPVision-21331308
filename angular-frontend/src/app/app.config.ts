@@ -1,11 +1,23 @@
 import { provideRouter } from '@angular/router';
-import {ApplicationConfig} from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
-import {routes} from "./app.routes"
-import {provideAnimations} from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { routes } from './app.routes';
+
+// Function to retrieve the `apiBaseUrl` dynamically
+function getApiBaseUrl(): string {
+  const apiBaseUrl = (window as any).apiBaseUrl; // Access Azure-injected variable
+  if (!apiBaseUrl) {
+    console.warn('API_BASE_URL is not set. Using fallback value.');
+  }
+  return apiBaseUrl || 'http://localhost:8080'; // Fallback for local development
+}
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),
+  providers: [
+    provideRouter(routes),
     provideHttpClient(),
-    provideAnimations(),]
+    provideAnimations(),
+    { provide: 'API_BASE_URL', useFactory: getApiBaseUrl }, // Provide API_BASE_URL dynamically
+  ],
 };
