@@ -59,6 +59,15 @@ $button-color: #757575;
       color: #fff;
     }
   }
+
+  .iconButton {
+    background-color: white;
+    color: $primary-color;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
 }
 
 .home-container {
