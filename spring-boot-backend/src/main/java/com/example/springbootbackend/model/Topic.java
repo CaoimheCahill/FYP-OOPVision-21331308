@@ -8,7 +8,7 @@ public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int topicId;
-    private String topicName;
+    private String topicTitle;
     private String topicDescription;
 
     // Getters and setters
@@ -20,12 +20,12 @@ public class Topic {
         this.topicId = topicId;
     }
 
-    public String getTopicName() {
-        return topicName;
+    public String getTopicTitle() {
+        return topicTitle;
     }
 
-    public void setTopicName(String topicName) {
-        this.topicName = topicName;
+    public void setTopicTitle(String topicTitle) {
+        this.topicTitle = topicTitle;
     }
 
     public String getTopicDescription() {

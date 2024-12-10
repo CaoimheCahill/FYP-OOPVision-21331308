@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 
 export interface Topic {
-  id: number;
-  name: string;
-  description: string;
+  topicId: number;
+  topicTitle: string;
+  topicDescription: string;
 }
 
 @Injectable({
