@@ -51,7 +51,7 @@
 <div class="topics-container">
   <h1>Topics</h1>
   <div class="topics-grid">
-    <button *ngFor="let topic of topics" class="topic-button">
+    <button *ngFor="let topic of topics" class="topic-button" [routerLink]="['/topic', topic.topicId]">
       {{ topic.topicTitle }}
     </button>
   </div>

@@ -5,6 +5,7 @@ import {HomeComponent} from './home/home.component';
 import {TopicsComponent} from './topics/topics.component';
 import {ProgressComponent} from './progress/progress.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
+import {TopicContentComponent} from './topic-content/topic-content.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'topics', component: TopicsComponent },
   { path: 'progress', component: ProgressComponent },
   { path: 'editProfile', component: EditProfileComponent },
+  { path: 'topic/:id', component: TopicContentComponent },
 
 ];
