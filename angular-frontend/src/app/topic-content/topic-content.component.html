@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Topics</title>
+  <title>Default</title>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" type="text/css" href="./topics.component.scss">
+  <link rel="stylesheet" type="text/css" href="./topic-content.component.scss">
 </head>
 
 <body>
@@ -48,13 +48,12 @@
   </div>
 </mat-toolbar>
 
-<div class="topics-container">
-  <h1>Topics</h1>
-  <div class="topics-grid">
-    <button *ngFor="let topic of topics" class="topic-button" [routerLink]="['/topic', topic.topicId]">
-      {{ topic.topicTitle }}
-    </button>
-  </div>
+<div class="topic-detail-container" *ngIf="topic">
+  <h1>{{ topic.topicTitle }}</h1>
+  <p>{{ topic.topicDescription }}</p>
+</div>
+<div *ngIf="!topic">
+  <p>Loading...</p>
 </div>
 
 
