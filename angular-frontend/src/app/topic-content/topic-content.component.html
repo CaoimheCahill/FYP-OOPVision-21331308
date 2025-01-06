@@ -48,9 +48,23 @@
   </div>
 </mat-toolbar>
 
+<div class="back-button-section">
+  <a class="back-button" href="/topics">&#x3c; Back</a>
+</div>
+
 <div class="topic-detail-container" *ngIf="topic">
+  <div class="content">
+  <div class="left-section">
   <h1>{{ topic.topicTitle }}</h1>
   <p>{{ topic.topicDescription }}</p>
+  </div>
+
+  <div class="right-section">
+    <button class="btn" routerLink="/visual-example">Visual Example</button>
+    <button class="btn" routerLink="/quiz">Quiz</button>
+  </div>
+
+  </div>
 </div>
 <div *ngIf="!topic">
   <p>Loading...</p>
