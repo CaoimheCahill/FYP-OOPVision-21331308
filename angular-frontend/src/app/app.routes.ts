@@ -6,6 +6,8 @@ import {TopicsComponent} from './topics/topics.component';
 import {ProgressComponent} from './progress/progress.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {TopicContentComponent} from './topic-content/topic-content.component';
+import {VisualExampleComponent} from './visual-example/visual-example.component';
+import {QuizComponent} from './quiz/quiz.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -16,5 +18,7 @@ export const routes: Routes = [
   { path: 'progress', component: ProgressComponent },
   { path: 'editProfile', component: EditProfileComponent },
   { path: 'topic/:id', component: TopicContentComponent },
+  { path: 'visualExample', component: VisualExampleComponent},
+  { path: 'quiz', component: QuizComponent}
 
 ];
