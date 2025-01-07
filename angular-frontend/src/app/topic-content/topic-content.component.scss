@@ -39,7 +39,7 @@ $button-color: #757575;
 
   .nav-links a {
     text-decoration: none;
-    color: #757575;
+    color: $button-color;
     padding: 0.5rem 1rem;
     font-family: 'Righteous', sans-serif;
   }
@@ -69,29 +69,36 @@ $button-color: #757575;
   }
 }
 
-.back-button {
-  flex: 1;
-  display: flex;
-  text-decoration: none;
-  color: $primary-color;
-  font-size: 1.2rem;
-  padding: 20px;
+.back-button-section {
+ padding: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+
+  .back-button {
+    text-decoration: none;
+    color: $primary-color;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border: none;
+  }
+
+  .back-button:hover {
+    text-decoration: underline;
+  }
 }
 
 
 .topic-detail-container {
   flex: 1;
-  padding: 20px;
+  padding: 0 20px 20px 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  text-align: left;
-  margin: 2rem;
   align-items: center;
 
   .content {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     max-width: 1000px;
     width: 100%;
     height: auto;
@@ -105,6 +112,8 @@ $button-color: #757575;
   h1 {
     font-size: 2.5rem;
     color: $primary-color;
+    margin-bottom: 0.5rem;
+    font-family: 'Righteous', sans-serif;
   }
 
   p {
@@ -112,33 +121,29 @@ $button-color: #757575;
     color: #333;
     margin-top: 1rem;
     line-height: 1.6;
-    max-width: 50%;
+    text-align: justify;
   }
 
-  .left-section,
-  .right-section {
-    flex: 1;
+
+  .buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-
-  }
-
-  .right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+    gap: 20px;
 
     .btn {
       border: 1px solid $primary-color;
       background: none;
       color: $primary-color;
-      padding: 40px 20px;
+      padding: 20px;
       border-radius: 5px;
       cursor: pointer;
       text-transform: uppercase;
       font-size: 1rem;
       font-weight: bold;
+      width: 40%;
+      text-align: center;
+
 
       &:hover {
         background-color: $primary-color;
