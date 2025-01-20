@@ -64,9 +64,9 @@
 </div>
 
 <div class="control-buttons">
-  <button (click)="previousImages()" [disabled]="currentIndex === 0">Previous</button>
+  <button (click)="previousImages()" [disabled]="currentIndex === 0">&lt; Previous</button>
   <button (click)="finish()" [disabled]="!isLast()">Finish</button>
-  <button (click)="nextImages()" [disabled]="isLast()">Next</button>
+  <button (click)="nextImages()" [disabled]="isLast()">Next &gt;</button>
 </div>
 
 
