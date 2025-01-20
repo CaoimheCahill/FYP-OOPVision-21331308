@@ -49,8 +49,26 @@
 </mat-toolbar>
 
 <div class="back-button-section">
-  <a class="back-button" href="">&#x3c; Back</a>
+  <a class="back-button" [routerLink]="['/topic', this.topicId]">&#x3c; Back</a>
 </div>
+
+<div class="image-container">
+  <div class="image-box">
+    <img *ngIf="leftImages.length > 0" [src]="leftImages[currentIndex]?.imagePath" alt="Left Image" (error)="onImageError($event)">
+  </div>
+
+  <div class="image-box">
+    <img *ngIf="rightImages.length > 0" [src]="rightImages[currentIndex]?.imagePath" alt="Right Image"
+         (error)="onImageError($event)">
+  </div>
+</div>
+
+<div class="control-buttons">
+  <button (click)="previousImages()" [disabled]="currentIndex === 0">Previous</button>
+  <button (click)="finish()" [disabled]="!isLast()">Finish</button>
+  <button (click)="nextImages()" [disabled]="isLast()">Next</button>
+</div>
+
 
 <footer class="footer">
   © 2024 Copyright OOP Vision. All Rights Reserved
