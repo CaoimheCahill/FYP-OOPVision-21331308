@@ -1,20 +1,19 @@
 package com.example.springbootbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
+@Table(name = "images")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageId;
+
     private Long topicId;
     private String imagePath;
     private String imageSide;
-    private Integer orderIndex;
+    private int orderIndex;
 
 
     public Long getImageId() {
@@ -49,11 +48,11 @@ public class Image {
         this.imageSide = imageSide;
     }
 
-    public Integer getOrderIndex() {
+    public int getOrderIndex() {
         return orderIndex;
     }
 
-    public void setOrderIndex(Integer orderIndex) {
+    public void setOrderIndex(int orderIndex) {
         this.orderIndex = orderIndex;
     }
 
