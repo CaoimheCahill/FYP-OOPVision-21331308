@@ -18,7 +18,7 @@ export const routes: Routes = [
   { path: 'progress', component: ProgressComponent },
   { path: 'editProfile', component: EditProfileComponent },
   { path: 'topic/:id', component: TopicContentComponent },
-  { path: 'visualExample', component: VisualExampleComponent},
+  { path: 'visualExample/:topicId', component: VisualExampleComponent},
   { path: 'quiz', component: QuizComponent}
 
 ];
