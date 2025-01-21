@@ -14,8 +14,8 @@ export interface QuizQuestion {
   quizId: number;
   questionText: string;
   questionType: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'SHORT_ANSWER';
-  correctAnswer?: string;
-  options?: string[];
+  correctAnswer: string;
+  options?: string;
 }
 
 @Injectable({

@@ -52,8 +52,51 @@
   <a class="back-button" >&#x3c; Back</a>
 </div>
 
+<div class="quiz-container">
+
+  <!-- Question Section -->
+  <div class="question-section">
+    <h2 class="question-text">{{ currentQuestion?.questionText }}</h2>
 
 
+    <!-- Multiple Choice -->
+    <ng-container *ngIf="currentQuestion?.questionType === 'MULTIPLE_CHOICE'">
+      <div
+        *ngFor="let option of currentQuestion?.options"
+        class="option"
+        [class.selected]="selectedOption === option"
+        (click)="selectOption(option)">
+        <input type="radio" name="options" [value]="option" [(ngModel)]="selectedOption" />
+        <label>{{ option }}</label>
+      </div>
+    </ng-container>
+
+    <!-- True/False -->
+    <ng-container *ngIf="currentQuestion?.questionType === 'TRUE_FALSE'">
+      <div *ngFor="let option of  currentQuestion?.options" class="option">
+        <label>
+          <input type="radio" name="truefalse" [value]="option" [(ngModel)]="selectedOption" />
+          {{ option }}
+        </label>
+      </div>
+    </ng-container>
+
+    <!-- Short Answer -->
+    <ng-container *ngIf="currentQuestion?.questionType === 'SHORT_ANSWER'">
+      <textarea
+        [(ngModel)]="shortAnswer"
+        class="short-answer"
+        placeholder="Type your answer here..."
+      ></textarea>
+    </ng-container>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navigation">
+    <button (click)="goBack()" [disabled]="currentStep === 0">Back</button>
+    <button (click)="goNext()">Next</button>
+  </div>
+</div>
 
 <footer class="footer">
   © 2024 Copyright OOP Vision. All Rights Reserved
