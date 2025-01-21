@@ -2,8 +2,6 @@ package com.example.springbootbackend.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "quizzes")
 public class Quizzes {

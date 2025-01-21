@@ -16,6 +16,14 @@ public class QuizQuestions {
     private QuestionType questionType;
     private String correctAnswer;
 
+    public Integer getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
+    }
+
     public Integer getQuizId() {
         return quizId;
     }
@@ -24,17 +32,12 @@ public class QuizQuestions {
         this.quizId = quizId;
     }
 
-    public void setQuestionId(Integer questionId) {
-        this.questionId = questionId;
+    public String getQuestionText() {
+        return questionText;
     }
 
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
     public QuestionType getQuestionType() {
@@ -45,12 +48,13 @@ public class QuizQuestions {
         this.questionType = questionType;
     }
 
-    public String getQuestionText() {
-        return questionText;
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
 }
