@@ -15,6 +15,7 @@ public class QuizQuestions {
     @Enumerated(EnumType.STRING)
     private QuestionType questionType;
     private String correctAnswer;
+    private String options;
 
     public Integer getQuestionId() {
         return questionId;
@@ -55,6 +56,14 @@ public class QuizQuestions {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public String getOptions() {
+        return options;
+    }
+
+    public void setOptions(String options) {
+        this.options = options;
     }
 
 }
