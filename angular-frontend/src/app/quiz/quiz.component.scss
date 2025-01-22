@@ -90,29 +90,57 @@ $button-color: #757575;
 .quiz-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  padding: 20px;
   background-color: #fdfdfd;
-
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
   .question-section {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    min-height: 400px;
+    flex-grow: 1;
+    padding-top: 20px;
 
     .question-text {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 2.3rem;
+      color: white;
+      background-color: $primary-color;
+      padding: 50px;
+      width: 100vw;
+      text-align: center;
+    }
+
+    .answer-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+
     }
 
     .option {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 800px;
+      margin: 10px auto;
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
       cursor: pointer;
+      background-color: white;
+      font-size: 1rem;
 
       &.selected {
         background-color: #ffe0b2;
@@ -120,6 +148,10 @@ $button-color: #757575;
 
       input {
         margin-right: 10px;
+      }
+
+      label {
+        flex: 1;
       }
     }
 
@@ -131,24 +163,40 @@ $button-color: #757575;
       resize: none;
     }
   }
+}
 
-  .navigation {
-    display: flex;
-    justify-content: space-between;
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  bottom: 50px;
 
-    button {
-      padding: 10px 20px;
-      background-color: $primary-color;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 
-      &:disabled {
-        background-color: lightgray;
-        cursor: not-allowed;
-      }
+    &:disabled {
+      background-color: lightgray;
+      cursor: not-allowed;
     }
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  .next-button {
+    margin-left: auto; // Pushes to the right
   }
 }
 
