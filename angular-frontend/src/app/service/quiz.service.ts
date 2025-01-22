@@ -16,6 +16,7 @@ export interface QuizQuestion {
   questionType: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'SHORT_ANSWER';
   correctAnswer: string;
   options?: string;
+  userAnswer?: string | null;
 }
 
 @Injectable({

@@ -73,7 +73,9 @@
 
       <!-- True/False -->
       <ng-container *ngIf="currentQuestion?.questionType === 'TRUE_FALSE'">
-        <div *ngFor="let option of  currentQuestion?.options" class="option">
+        <div *ngFor="let option of  currentQuestion?.options" class="option"
+             [class.selected]="selectedOption === option"
+             (click)="selectOption(option)">
           <label>
             <input type="radio" name="truefalse" [value]="option" [(ngModel)]="selectedOption"/>
             {{ option }}
@@ -83,11 +85,12 @@
 
       <!-- Short Answer -->
       <ng-container *ngIf="currentQuestion?.questionType === 'SHORT_ANSWER'">
-      <textarea
-        [(ngModel)]="shortAnswer"
-        class="short-answer"
-        placeholder="Type your answer here..."
-      ></textarea>
+       <textarea
+         [(ngModel)]="shortAnswer"
+         (input)="updateShortAnswer($event)"
+         class="short-answer"
+         placeholder="Type your answer here..."
+       ></textarea>
       </ng-container>
     </div>
   </div>
@@ -96,6 +99,12 @@
     <button (click)="goBack()" [disabled]="currentStep === 0">Back</button>
     <button (click)="goNext()">Next</button>
   </div>
+</div>
+
+<div *ngIf="showResults" class="results-container">
+  <h2>Quiz Results</h2>
+  <p>You scored {{ score }} out of {{ questions.length }}</p>
+  <button (click)="restartQuiz()">Restart Quiz</button>
 </div>
 
 <footer class="footer">

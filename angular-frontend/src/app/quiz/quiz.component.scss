@@ -200,6 +200,41 @@ $button-color: #757575;
   }
 }
 
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.results-container h2 {
+  font-size: 2rem;
+  color: $primary-color;
+}
+
+.results-container p {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.results-container button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
 
 // Footer Styles
 .footer {
