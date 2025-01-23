@@ -281,20 +281,25 @@ $button-color: #757575;
     font-weight: bold;
   }
 
-  button {
-    padding: 12px 20px;
-    margin-bottom: 80px;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+  .result-buttons {
+    display: flex;
+    gap: 25px;
 
-    &:hover {
-      background-color: darken($primary-color, 10%);
+    button {
+      padding: 12px 20px;
+      margin-bottom: 80px;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
     }
   }
 }
