@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
 import {FormsModule} from '@angular/forms';
@@ -25,6 +25,7 @@ import {catchError, switchMap} from 'rxjs';
   styleUrl: './quiz.component.scss'
 })
 export class QuizComponent implements OnInit {
+  topicId!: number;
   questions: QuizQuestion[] = [];
   currentQuestion: QuizQuestion | null = null;
   currentStep = 0;
@@ -33,12 +34,15 @@ export class QuizComponent implements OnInit {
   score: number = 0;
   showResults: boolean = false;
 
-  constructor(private titleService: Title, private quizService: QuizService) {
+  constructor(private titleService: Title, private quizService: QuizService, private route:ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.titleService.setTitle('Quiz');
-    this.loadQuizQuestions(1);
+    this.route.params.subscribe(params => {
+      this.topicId = +params['topicId'];
+      this.loadQuizQuestions(this.topicId);
+    });
   }
 
   loadQuizQuestions(topicId: number): void {
@@ -138,5 +142,4 @@ export class QuizComponent implements OnInit {
     this.selectedOption = null;
     this.shortAnswer = '';
   }
-
 }

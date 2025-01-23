@@ -58,8 +58,8 @@
   <p>{{ topic.topicDescription }}</p>
 
   <div class="buttons">
-    <button class="btn" [routerLink]="['/visualExample', topic.topicId]">Visual Example</button>
-    <button class="btn" routerLink="/quiz">Quiz</button>
+    <button class="btn" [routerLink]="['/topic/', topic.topicId, 'visualExample']">Visual Example</button>
+    <button class="btn" [routerLink]="['/topic/', topic.topicId, 'quiz']">Quiz</button>
   </div>
 
   </div>
