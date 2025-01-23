@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
@@ -18,7 +18,8 @@ import {catchError, switchMap} from 'rxjs';
     RouterLink,
     FormsModule,
     NgForOf,
-    NgIf
+    NgIf,
+    NgClass
   ],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss'
@@ -109,6 +110,7 @@ export class QuizComponent implements OnInit {
   restoreSelection(): void {
     if (this.currentQuestion) {
       this.selectedOption = this.currentQuestion.userAnswer || null;
+      this.shortAnswer = this.currentQuestion.userAnswer || '';
     }
   }
 

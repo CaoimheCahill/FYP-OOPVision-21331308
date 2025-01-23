@@ -55,56 +55,87 @@
 </div>
 
 <div class="quiz-container">
-  <div class="question-section">
-    <h2 class="question-text">{{ currentQuestion?.questionText }}</h2>
+  <div *ngIf="!showResults">
+    <div class="question-section">
+      <h2 class="question-text">{{ currentQuestion?.questionText }}</h2>
 
-    <div class="answer-section">
-      <!-- Multiple Choice -->
-      <ng-container *ngIf="currentQuestion?.questionType === 'MULTIPLE_CHOICE'">
-        <div
-          *ngFor="let option of currentQuestion?.options"
-          class="option"
-          [class.selected]="selectedOption === option"
-          (click)="selectOption(option)">
-          <input type="radio" name="options" [value]="option" [(ngModel)]="selectedOption"/>
-          <label>{{ option }}</label>
-        </div>
-      </ng-container>
+      <div class="answer-section">
+        <!-- Multiple Choice -->
+        <ng-container *ngIf="currentQuestion?.questionType === 'MULTIPLE_CHOICE'">
+          <div
+            *ngFor="let option of currentQuestion?.options"
+            class="option"
+            [class.selected]="selectedOption === option"
+            (click)="selectOption(option)">
+            <input type="radio" name="options" [value]="option" [(ngModel)]="selectedOption"/>
+            <label>{{ option }}</label>
+          </div>
+        </ng-container>
 
-      <!-- True/False -->
-      <ng-container *ngIf="currentQuestion?.questionType === 'TRUE_FALSE'">
-        <div *ngFor="let option of  currentQuestion?.options" class="option"
-             [class.selected]="selectedOption === option"
-             (click)="selectOption(option)">
-          <label>
-            <input type="radio" name="truefalse" [value]="option" [(ngModel)]="selectedOption"/>
-            {{ option }}
-          </label>
-        </div>
-      </ng-container>
+        <!-- True/False -->
+        <ng-container *ngIf="currentQuestion?.questionType === 'TRUE_FALSE'">
+          <div *ngFor="let option of  currentQuestion?.options" class="option"
+               [class.selected]="selectedOption === option"
+               (click)="selectOption(option)">
+            <label>
+              <input type="radio" name="truefalse" [value]="option" [(ngModel)]="selectedOption"/>
+              {{ option }}
+            </label>
+          </div>
+        </ng-container>
 
-      <!-- Short Answer -->
-      <ng-container *ngIf="currentQuestion?.questionType === 'SHORT_ANSWER'">
+        <!-- Short Answer -->
+        <ng-container *ngIf="currentQuestion?.questionType === 'SHORT_ANSWER'">
        <textarea
          [(ngModel)]="shortAnswer"
          (input)="updateShortAnswer($event)"
          class="short-answer"
          placeholder="Type your answer here..."
        ></textarea>
-      </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button (click)="goBack()" [disabled]="currentStep === 0">Back</button>
+      <button (click)="goNext()">{{ currentStep === questions.length - 1 ? 'Finish' : 'Next' }}</button>
     </div>
   </div>
 
-  <div class="navigation">
-    <button (click)="goBack()" [disabled]="currentStep === 0">Back</button>
-    <button (click)="goNext()">{{ currentStep === questions.length - 1 ? 'Finish' : 'Next' }}</button>
-  </div>
-</div>
+  <!-- Quiz Results Section -->
+  <div *ngIf="showResults" class="results-container">
+    <h2>Quiz Results</h2>
+    <p>You scored <strong>{{ score }}</strong> out of <strong>{{ questions.length }}</strong></p>
 
-<div *ngIf="showResults" class="results-container">
-  <h2>Quiz Results</h2>
-  <p>You scored {{ score }} out of {{ questions.length }}</p>
-  <button (click)="restartQuiz()">Restart Quiz</button>
+    <div class="results-summary">
+      <div *ngFor="let question of questions" class="result-question">
+        <h3>{{ question.questionText }}</h3>
+
+        <div class="options-container">
+          <div *ngFor="let option of question.options" class="option"
+               [ngClass]="{
+                'correct-answer': option === question.correctAnswer,
+                'incorrect-answer': option === question.userAnswer && option !== question.correctAnswer
+             }">
+            <input type="radio" [checked]="question.userAnswer === option" disabled/>
+            <label>{{ option }}</label>
+          </div>
+          <div *ngIf="question.questionType === 'SHORT_ANSWER'" class="option">
+            <span><strong>Your Answer:</strong> {{ question.userAnswer }}</span>
+          </div>
+        </div>
+
+        <div class="feedback">
+          <span *ngIf="question.userAnswer === question.correctAnswer" class="correct">✔ Correct!</span>
+          <span *ngIf="question.userAnswer !== question.correctAnswer" class="incorrect">
+          ✘ Incorrect. <br><strong>Correct Answer:</strong> {{ question.correctAnswer }}
+        </span>
+        </div>
+      </div>
+    </div>
+    <button (click)="restartQuiz()">Restart Quiz</button>
+  </div>
+
 </div>
 
 <footer class="footer">
