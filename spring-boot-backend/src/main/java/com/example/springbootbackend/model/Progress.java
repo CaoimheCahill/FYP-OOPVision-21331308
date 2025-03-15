@@ -1,17 +1,20 @@
 package com.example.springbootbackend.model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "user_progress")
 public class Progress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long progressId;
+    private Integer progressId;
 
-    private Long userId;
-    private Long topicId;
+    private Integer userId;
+    private Integer topicId;
 
     private boolean viewedExample; // True when user has completed the example
     private LocalDateTime viewedExampleAt;
@@ -19,34 +22,34 @@ public class Progress {
     private boolean completedQuiz; // True when user has completed the quiz
     private LocalDateTime completedQuizAt;
 
-    private Integer quizScore;
+    private int quizScore;
 
     // This will be marked as 'true' when both 'viewedExample' and 'completedQuiz' are true
     private boolean completed;
 
     // Getters and setters
 
-    public Long getProgressId() {
+    public int getProgressId() {
         return progressId;
     }
 
-    public void setProgressId(Long progressId) {
+    public void setProgressId(int progressId) {
         this.progressId = progressId;
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public Long getTopicId() {
+    public int getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(Long topicId) {
+    public void setTopicId(int topicId) {
         this.topicId = topicId;
     }
 
