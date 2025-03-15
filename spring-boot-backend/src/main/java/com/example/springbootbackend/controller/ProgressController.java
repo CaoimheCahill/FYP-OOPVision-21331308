@@ -24,7 +24,7 @@ public class ProgressController {
         if (progressList.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        double completionPercentage = progressService.calculateCompletionPercentage(userId);
+        int completionPercentage = progressService.calculateCompletionPercentage(userId);
         return ResponseEntity.ok(new UserProgressResponse(progressList, completionPercentage));
     }
 }

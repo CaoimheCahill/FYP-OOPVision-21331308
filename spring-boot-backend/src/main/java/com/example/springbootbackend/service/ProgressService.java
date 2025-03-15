@@ -25,7 +25,7 @@ public class ProgressService {
     }
 
     // Calculate the completion percentage
-    public double calculateCompletionPercentage(Integer userId) {
+    public int calculateCompletionPercentage(Integer userId) {
         List<Progress> progressList = progressRepository.findByUserId(userId);
 
         // Get the total number of topics
@@ -39,10 +39,13 @@ public class ProgressService {
         // Calculate the completion percentage
         double completionPercentage = (completedTopics / (double) totalTopics) * 100;
 
-        // Round to 2 decimal places using BigDecimal
-        BigDecimal roundedPercentage = new BigDecimal(completionPercentage).setScale(2, RoundingMode.HALF_UP);
+        // Round to the nearest whole number and cast to an integer
+        int roundedPercentage = (int) Math.round(completionPercentage);
 
-        return roundedPercentage.doubleValue();
+        return roundedPercentage;
     }
+
+
+
 }
 
