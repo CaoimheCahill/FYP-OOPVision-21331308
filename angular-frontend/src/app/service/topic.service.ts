@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 
 export interface Topic {
   topicId: number;
@@ -14,11 +14,15 @@ export interface Topic {
 })
 export class TopicService {
 
-  private apiUrl = environment.apiBaseUrl + '/api/topics'; // Adjust URL if necessary
+  private apiUrl = environment.apiBaseUrl + '/api/topics';
 
   constructor(private http: HttpClient) {}
 
   getTopics(): Observable<Topic[]> {
-    return this.http.get<Topic[]>(this.apiUrl);
+    return this.http.get<Topic[]>(`${this.apiUrl}/getAll`);
+  }
+
+  getTotalTopics(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
   }
 }
