@@ -9,8 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import {HttpClient} from '@angular/common/http';
-
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -29,7 +27,6 @@ bootstrapApplication(AppComponent, {
       MatInputModule,
       MatFormFieldModule,
       MatButtonModule,
-      HttpClient
     ),
   ],
 }).catch(err => console.error(err));

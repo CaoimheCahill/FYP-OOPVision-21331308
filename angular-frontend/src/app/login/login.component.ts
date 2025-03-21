@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit{
     if (this.loginData.email && this.loginData.password) {
       this.userService.login(this.loginData).subscribe(
         (response) => {
+          this.userService.saveToken(response.token);
           alert('Login successful!');
           console.log('Response:', response);
 
