@@ -29,9 +29,10 @@ public class UserController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+    public ResponseEntity<JwtResponse> registerUser(@RequestBody User user) {
         User newUser = userService.registerUser(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        String token = jwtUtil.generateToken(newUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new JwtResponse(token));
     }
 
 
