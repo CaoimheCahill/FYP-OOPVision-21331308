@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProgressService {
@@ -43,6 +46,28 @@ public class ProgressService {
         int roundedPercentage = (int) Math.round(completionPercentage);
 
         return roundedPercentage;
+    }
+
+    public void markViewedExample(int userId, int topicId) {
+        Optional<Progress> progressOpt = progressRepository.findByUserIdAndTopicId(userId, topicId);
+        Progress progress;
+        if (progressOpt.isPresent()) {
+            progress = progressOpt.get();
+            progress.setViewedExample(true);
+            progress.setViewedExampleAt(LocalDateTime.now());
+        } else {
+            progress = new Progress();
+            progress.setUserId(userId);
+            progress.setTopicId(topicId);
+            progress.setViewedExample(true);
+            progress.setViewedExampleAt(LocalDateTime.now());
+            progress.setCompletedQuiz(false);
+            progress.setCompletedQuizAt(null);
+            progress.setQuizScore(0);
+            progress.setCompleted(false);
+
+        }
+        progressRepository.save(progress);
     }
 
 
