@@ -1,6 +1,7 @@
 package com.example.springbootbackend.controller;
 
 import com.example.springbootbackend.dto.ProgressRequest;
+import com.example.springbootbackend.dto.QuizProgressRequest;
 import com.example.springbootbackend.dto.UserProgressResponse;
 import com.example.springbootbackend.model.Progress;
 import com.example.springbootbackend.model.User;
@@ -47,6 +48,18 @@ public class ProgressController {
         }
         int userId = userOpt.get().getUserId();
         progressService.markViewedExample(userId, request.getTopicId());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/mark-quiz-finished")
+    public ResponseEntity<?> markQuizFinished(@RequestBody QuizProgressRequest request, Authentication authentication) {
+        String email = authentication.getName();
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        int userId = userOpt.get().getUserId();
+        progressService.markQuizFinished(userId, request.getTopicId(), request.getScore());
         return ResponseEntity.ok().build();
     }
 }

@@ -21,4 +21,8 @@ export class ProgressService {
     const body = { topicId };
     return this.http.post(`${this.apiUrl}/mark-viewed`, body);
   }
+
+  markQuizFinished(topicId: number, score: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/mark-quiz-finished`, { topicId, score });
+  }
 }

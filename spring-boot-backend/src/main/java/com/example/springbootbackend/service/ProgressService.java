@@ -67,10 +67,38 @@ public class ProgressService {
             progress.setCompleted(false);
 
         }
+        updateCompletionStatus(progress);
         progressRepository.save(progress);
     }
 
 
+    public void markQuizFinished(int userId, int topicId, int score) {
+        Optional<Progress> progressOpt = progressRepository.findByUserIdAndTopicId(userId, topicId);
+        Progress progress;
+        if (progressOpt.isPresent()) {
+            progress = progressOpt.get();
+            progress.setCompletedQuiz(true);
+            progress.setCompletedQuizAt(LocalDateTime.now());
+            progress.setQuizScore(score);
+        } else {
+            progress = new Progress();
+            progress.setUserId(userId);
+            progress.setTopicId(topicId);
+            progress.setViewedExample(false);
+            progress.setViewedExampleAt(null);
+            progress.setCompletedQuiz(true);
+            progress.setCompletedQuizAt(LocalDateTime.now());
+            progress.setQuizScore(0);
+            progress.setCompleted(false);
+        }
+
+        updateCompletionStatus(progress);
+        progressRepository.save(progress);
+    }
+
+    private void updateCompletionStatus(Progress progress) {
+        progress.setCompleted(progress.isViewedExample() && progress.isCompletedQuiz());
+    }
 
 }
 
