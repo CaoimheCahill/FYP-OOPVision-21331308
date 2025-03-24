@@ -24,7 +24,7 @@ import {UserService} from '../service/user.service';
 })
 export class ProgressComponent implements OnInit{
 
-  progressData: any = {};   // Store the progress data
+  progressData: any[] = [];   // Store the progress data
   completionPercentage: number = 0;
   totalTopics: number = 0;
   userId: number | null | undefined;
@@ -37,7 +37,7 @@ export class ProgressComponent implements OnInit{
 
     // Fetch the progress data
     this.progressService.getUserProgress(this.userId).subscribe((data) => {
-      this.progressData = data.progress;
+      this.progressData = data.progress || [];
       this.completionPercentage = data.completionPercentage;
       console.log(this.progressData)
     });
