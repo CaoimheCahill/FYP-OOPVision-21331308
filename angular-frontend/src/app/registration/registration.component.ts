@@ -59,6 +59,11 @@ export class RegistrationComponent implements OnInit{
 
       this.userService.register(user).subscribe(
         (response) => {
+
+          if (response.token) {
+            // Store the token in localStorage or sessionStorage
+            localStorage.setItem('token', response.token);
+          }
           alert('Registration successful!');
           console.log('User registered:', response);
 

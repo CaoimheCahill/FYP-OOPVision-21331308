@@ -9,6 +9,7 @@ export interface TokenPayload extends JwtPayload {
 }
 
 export interface User {
+  token: string;
   email: string;
   password: string;
 }
@@ -26,7 +27,7 @@ export class UserService {
     return this.http.post<User>(`${this.baseUrl}/register`, user)
   }
 
-  login(credentials: User): Observable<{ token: string }> {
+  login(credentials: { password: string; email: string }): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(`${this.baseUrl}/login`, credentials, {
       responseType: 'json',
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
