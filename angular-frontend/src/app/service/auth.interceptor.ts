@@ -8,6 +8,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const userService = inject(UserService);
   const token = userService.getToken();
 
+  // Skip token for login requests
+  if (req.url.includes('/api/users/login')) {
+    return next(req);
+  }
+
   console.log('[authInterceptorFn] token:', token);
 
   if (token) {
