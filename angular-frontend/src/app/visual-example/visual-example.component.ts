@@ -6,6 +6,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {ImageService} from '../service/image.service';
 import { Image} from '../service/image.service';
+import {ProgressService} from '../service/progress.service';
 
 @Component({
   selector: 'app-visual-example',
@@ -28,7 +29,7 @@ export class VisualExampleComponent implements OnInit{
   currentIndex = 0;
 
 
-  constructor(private titleService: Title, private route:ActivatedRoute, private imageService: ImageService, private router:Router) {
+  constructor(private titleService: Title, private route:ActivatedRoute, private imageService: ImageService, private router:Router, private progressService: ProgressService) {
   }
 
   ngOnInit(): void {
@@ -72,7 +73,14 @@ export class VisualExampleComponent implements OnInit{
   }
 
   finish() {
-    this.router.navigate(['/topic', this.topicId])
-
+    this.progressService.markViewedExample(this.topicId).subscribe({
+      next: () => {
+        this.router.navigate(['/topic', this.topicId]);
+      },
+      error: (err) => {
+        console.error('Error updating progress:', err);
+        this.router.navigate(['/topic', this.topicId]);
+      }
+    });
   }
 }

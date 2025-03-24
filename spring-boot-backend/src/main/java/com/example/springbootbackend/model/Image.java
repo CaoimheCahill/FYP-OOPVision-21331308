@@ -10,7 +10,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageId;
 
-    private Long topicId;
+    private Integer topicId;
     private String imagePath;
     private String imageSide;
     private int orderIndex;
@@ -24,11 +24,11 @@ public class Image {
         this.imageId = imageId;
     }
 
-    public Long getTopicId() {
+    public Integer getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(Long topicId) {
+    public void setTopicId(Integer topicId) {
         this.topicId = topicId;
     }
 

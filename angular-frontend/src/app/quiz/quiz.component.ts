@@ -7,6 +7,7 @@ import {Title} from '@angular/platform-browser';
 import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
 import {FormsModule} from '@angular/forms';
 import {catchError, switchMap} from 'rxjs';
+import {ProgressService} from '../service/progress.service';
 
 @Component({
   selector: 'app-quiz',
@@ -33,8 +34,9 @@ export class QuizComponent implements OnInit {
   shortAnswer: string = '';
   score: number = 0;
   showResults: boolean = false;
+  finalResult: string = '';
 
-  constructor(private titleService: Title, private quizService: QuizService, private route:ActivatedRoute, private router:Router) {
+  constructor(private titleService: Title, private quizService: QuizService, private route:ActivatedRoute, private router:Router, private progressService: ProgressService) {
   }
 
   ngOnInit(): void {
@@ -107,7 +109,20 @@ export class QuizComponent implements OnInit {
       this.restoreSelection();
     } else {
       this.calculateScore();
-      this.showResults = true;
+      // Call the progress service to mark quiz as finished
+      this.finalResult = `${this.score}/${this.questions.length}`;
+      this.progressService.markQuizFinished(this.topicId, this.finalResult).subscribe({
+        next: () => {
+          console.log(this.finalResult);
+          // Optionally, do something on success. For now, we simply show the results.
+          this.showResults = true;
+        },
+        error: (err: any) => {
+          console.error('Error finishing quiz:', err);
+          // Still show the results even if the update fails.
+          this.showResults = true;
+        }
+      });
     }
   }
 

@@ -6,6 +6,7 @@ import {RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {ProgressService} from '../service/progress.service';
 import {TopicService} from '../service/topic.service';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-progress',
@@ -23,19 +24,20 @@ import {TopicService} from '../service/topic.service';
 })
 export class ProgressComponent implements OnInit{
 
-  progressData: any = {};   // Store the progress data
+  progressData: any[] = [];   // Store the progress data
   completionPercentage: number = 0;
   totalTopics: number = 0;
+  userId: number | null | undefined;
 
-  constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService) {}
+  constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService, private userService: UserService) {}
 
   ngOnInit(): void {
-    const userId = 1;
+    this.userId = this.userService.getUserIdFromToken();
     this.titleService.setTitle('Progress');
 
     // Fetch the progress data
-    this.progressService.getUserProgress(userId).subscribe((data) => {
-      this.progressData = data.progress;
+    this.progressService.getUserProgress(this.userId).subscribe((data) => {
+      this.progressData = data.progress || [];
       this.completionPercentage = data.completionPercentage;
       console.log(this.progressData)
     });

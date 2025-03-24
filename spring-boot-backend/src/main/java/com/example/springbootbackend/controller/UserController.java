@@ -1,5 +1,7 @@
 package com.example.springbootbackend.controller;
 
+import com.example.springbootbackend.config.JwtUtil;
+import com.example.springbootbackend.dto.JwtResponse;
 import com.example.springbootbackend.dto.LoginRequest;
 import com.example.springbootbackend.model.User;
 import com.example.springbootbackend.repository.UserRepository;
@@ -23,21 +25,29 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+    public ResponseEntity<JwtResponse> registerUser(@RequestBody User user) {
         User newUser = userService.registerUser(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        String token = jwtUtil.generateToken(newUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new JwtResponse(token));
     }
 
+
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        // Check if the user exists in the database
-        Optional<User> user = userRepository.findByEmail(loginRequest.getEmail());
-        if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
-            return ResponseEntity.ok("Login successful!");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        var userOpt = userRepository.findByEmail(loginRequest.getEmail());
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            if (user.getPassword().equals(loginRequest.getPassword())) {
+                String token = jwtUtil.generateToken(user);
+                return ResponseEntity.ok(new JwtResponse(token));
+            }
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body("Invalid email or password");
     }
 }
 
