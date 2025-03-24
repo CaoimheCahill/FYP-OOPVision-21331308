@@ -22,7 +22,7 @@ export class ProgressService {
     return this.http.post(`${this.apiUrl}/mark-viewed`, body);
   }
 
-  markQuizFinished(topicId: number, score: number): Observable<any> {
+  markQuizFinished(topicId: number, score: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/mark-quiz-finished`, { topicId, score });
   }
 }

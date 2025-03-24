@@ -63,7 +63,7 @@ public class ProgressService {
             progress.setViewedExampleAt(LocalDateTime.now());
             progress.setCompletedQuiz(false);
             progress.setCompletedQuizAt(null);
-            progress.setQuizScore(0);
+            progress.setQuizScore(null);
             progress.setCompleted(false);
 
         }
@@ -72,9 +72,10 @@ public class ProgressService {
     }
 
 
-    public void markQuizFinished(int userId, int topicId, int score) {
+    public void markQuizFinished(int userId, int topicId, String score) {
         Optional<Progress> progressOpt = progressRepository.findByUserIdAndTopicId(userId, topicId);
         Progress progress;
+        System.out.println(score);
         if (progressOpt.isPresent()) {
             progress = progressOpt.get();
             progress.setCompletedQuiz(true);
@@ -88,7 +89,7 @@ public class ProgressService {
             progress.setViewedExampleAt(null);
             progress.setCompletedQuiz(true);
             progress.setCompletedQuizAt(LocalDateTime.now());
-            progress.setQuizScore(0);
+            progress.setQuizScore(score);
             progress.setCompleted(false);
         }
 

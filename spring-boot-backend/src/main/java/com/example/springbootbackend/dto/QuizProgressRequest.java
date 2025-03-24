@@ -2,7 +2,7 @@ package com.example.springbootbackend.dto;
 
 public class QuizProgressRequest {
     private int topicId;
-    private int score;
+    private String score;
 
     public int getTopicId() {
         return topicId;
@@ -12,11 +12,11 @@ public class QuizProgressRequest {
         this.topicId = topicId;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 }

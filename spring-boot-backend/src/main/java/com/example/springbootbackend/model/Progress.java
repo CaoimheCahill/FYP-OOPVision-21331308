@@ -22,7 +22,7 @@ public class Progress {
     private boolean completedQuiz; // True when user has completed the quiz
     private LocalDateTime completedQuizAt;
 
-    private int quizScore;
+    private String quizScore;
 
     // This will be marked as 'true' when both 'viewedExample' and 'completedQuiz' are true
     private boolean completed;
@@ -85,11 +85,11 @@ public class Progress {
         this.completedQuizAt = completedQuizAt;
     }
 
-    public Integer getQuizScore() {
+    public String getQuizScore() {
         return quizScore;
     }
 
-    public void setQuizScore(Integer quizScore) {
+    public void setQuizScore(String quizScore) {
         this.quizScore = quizScore;
     }
 

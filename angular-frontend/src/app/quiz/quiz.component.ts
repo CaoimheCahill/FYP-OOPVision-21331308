@@ -34,6 +34,7 @@ export class QuizComponent implements OnInit {
   shortAnswer: string = '';
   score: number = 0;
   showResults: boolean = false;
+  finalResult: string = '';
 
   constructor(private titleService: Title, private quizService: QuizService, private route:ActivatedRoute, private router:Router, private progressService: ProgressService) {
   }
@@ -109,8 +110,10 @@ export class QuizComponent implements OnInit {
     } else {
       this.calculateScore();
       // Call the progress service to mark quiz as finished
-      this.progressService.markQuizFinished(this.topicId, this.score).subscribe({
+      this.finalResult = `${this.score}/${this.questions.length}`;
+      this.progressService.markQuizFinished(this.topicId, this.finalResult).subscribe({
         next: () => {
+          console.log(this.finalResult);
           // Optionally, do something on success. For now, we simply show the results.
           this.showResults = true;
         },
