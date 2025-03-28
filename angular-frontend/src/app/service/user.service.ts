@@ -6,6 +6,7 @@ import {jwtDecode, JwtPayload} from 'jwt-decode';
 
 export interface TokenPayload extends JwtPayload {
   userId?: number;
+  role?: string;
 }
 
 export interface User {

@@ -8,6 +8,7 @@ import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {TopicContentComponent} from './topic-content/topic-content.component';
 import {VisualExampleComponent} from './visual-example/visual-example.component';
 import {QuizComponent} from './quiz/quiz.component';
+import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'editProfile', component: EditProfileComponent },
   { path: 'topic/:id', component: TopicContentComponent },
   { path: 'topic/:topicId/visualExample', component: VisualExampleComponent},
-  { path: 'topic/:topicId/quiz', component: QuizComponent}
+  { path: 'topic/:topicId/quiz', component: QuizComponent},
+  { path: 'adminHome', component: AdminHomeComponent}
 
 ];
