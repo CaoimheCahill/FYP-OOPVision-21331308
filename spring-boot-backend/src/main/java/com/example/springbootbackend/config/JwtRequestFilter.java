@@ -8,12 +8,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -30,8 +32,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             String token = header.substring(7);
             try {
                 Claims claims = jwtUtil.validateToken(token);
+                // Extract the role from the claims; assume it's stored as "role"
+                String role = claims.get("role", String.class);
+                // Create a SimpleGrantedAuthority; Spring Security requires roles to be prefixed with "ROLE_"
+                List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
+
                 UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(claims.getSubject(), null, Collections.emptyList());
+                        new UsernamePasswordAuthenticationToken(claims.getSubject(), null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(auth);
             } catch (JwtException e) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");

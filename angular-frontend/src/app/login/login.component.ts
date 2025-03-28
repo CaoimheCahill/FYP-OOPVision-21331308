@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit{
 
           // 2. Decode the token
           const decoded = jwtDecode<TokenPayload>(response.token);
-
+          console.log(decoded);
           // 3. Check the role claim
           if (decoded.role === 'ADMIN') {
             // Navigate to the admin page if the user is an admin
-            this.router.navigate(['/adminHome']);
+            this.router.navigate(['/admin/home']);
           } else {
             // Otherwise navigate to the standard home page
             this.router.navigate(['/home']);

@@ -9,6 +9,8 @@ import {TopicContentComponent} from './topic-content/topic-content.component';
 import {VisualExampleComponent} from './visual-example/visual-example.component';
 import {QuizComponent} from './quiz/quiz.component';
 import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
+import {AdminUsersComponent} from './admin/admin-users/admin-users.component';
+import {AdminContentComponent} from './admin/admin-content/admin-content.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -21,6 +23,8 @@ export const routes: Routes = [
   { path: 'topic/:id', component: TopicContentComponent },
   { path: 'topic/:topicId/visualExample', component: VisualExampleComponent},
   { path: 'topic/:topicId/quiz', component: QuizComponent},
-  { path: 'adminHome', component: AdminHomeComponent}
+  { path: 'admin/home', component: AdminHomeComponent},
+  { path: 'admin/users', component: AdminUsersComponent},
+  { path: 'admin/content', component: AdminContentComponent}
 
 ];

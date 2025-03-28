@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 import {jwtDecode, JwtPayload} from 'jwt-decode';
 
 export interface TokenPayload extends JwtPayload {
@@ -13,6 +13,7 @@ export interface User {
   token: string;
   email: string;
   password: string;
+  userRole: string;
 }
 
 @Injectable({
@@ -23,6 +24,10 @@ export class UserService {
   private baseUrl = environment.apiBaseUrl + '/api/users';
 
   constructor(private http: HttpClient) { }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiBaseUrl}/api/admin/all`);
+  }
 
   register(user: User): Observable<User>{
     return this.http.post<User>(`${this.baseUrl}/register`, user)

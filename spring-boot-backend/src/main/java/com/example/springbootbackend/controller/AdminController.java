@@ -4,6 +4,7 @@ import com.example.springbootbackend.model.Image;
 import com.example.springbootbackend.model.QuizQuestions;
 import com.example.springbootbackend.model.Quizzes;
 import com.example.springbootbackend.model.Topic;
+import com.example.springbootbackend.repository.UserRepository;
 import com.example.springbootbackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,17 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     // ------------------------------
     //           USER
     // ------------------------------
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
 
     @PutMapping("/users/{userId}/promote")
     public ResponseEntity<String> promoteUser(@PathVariable Long userId) {
