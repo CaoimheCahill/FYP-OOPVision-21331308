@@ -10,6 +10,7 @@ export interface TokenPayload extends JwtPayload {
 }
 
 export interface User {
+  userId: number;
   token: string;
   email: string;
   password: string;
@@ -27,6 +28,21 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiBaseUrl}/api/admin/all`);
+  }
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(`${environment.apiBaseUrl}/api/admin/users/${userId}`,
+      { responseType: 'text' as 'json' });
+  }
+
+  promoteUser(userId: number): Observable<any> {
+    return this.http.put(`${environment.apiBaseUrl}/api/admin/users/${userId}/promote`, {},
+      { responseType: 'text' as 'json' });
+  }
+
+  demoteUser(userId: number): Observable<any> {
+    return this.http.put(`${environment.apiBaseUrl}/api/admin/users/${userId}/demote`, {},
+      { responseType: 'text' as 'json' });
   }
 
   register(user: User): Observable<User>{
