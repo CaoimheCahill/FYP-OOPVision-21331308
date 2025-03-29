@@ -13,6 +13,7 @@ import {AdminUsersComponent} from './admin/admin-users/admin-users.component';
 import {AdminTopicsComponent} from './admin/admin-topics/admin-topics.component';
 import {AdminQuizzesComponent} from './admin/admin-quizzes/admin-quizzes.component';
 import {AdminVisualExamplesComponent} from './admin/admin-visual-examples/admin-visual-examples.component';
+import {TopicsFormComponent} from './admin/topics-form/topics-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -29,5 +30,7 @@ export const routes: Routes = [
   { path: 'admin/users', component: AdminUsersComponent},
   { path: 'admin/topics', component: AdminTopicsComponent},
   { path: 'admin/quizzes', component: AdminQuizzesComponent},
-  { path: 'admin/visualExamples', component: AdminVisualExamplesComponent}
+  { path: 'admin/visualExamples', component: AdminVisualExamplesComponent},
+  { path: 'admin/topics/new', component: TopicsFormComponent },
+  { path: 'admin/topics/:id/edit', component: TopicsFormComponent },
 ];

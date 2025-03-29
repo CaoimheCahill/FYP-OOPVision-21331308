@@ -17,7 +17,7 @@
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" type="text/css" href="./admin-topics.component.scss">
+  <link rel="stylesheet" type="text/css" href="./topics-form.component.scss">
 </head>
 
 <body>
@@ -41,29 +41,19 @@
   </div>
 </mat-toolbar>
 
-<h2>Manage Topics</h2>
+<h2 *ngIf="isEditMode">Edit Topic</h2>
+<h2 *ngIf="!isEditMode">Create New Topic</h2>
 
-<button (click)="createTopic()">Create New Topic</button>
+<form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
+  <label for="title">Title</label>
+  <input id="title" formControlName="topicTitle" type="text" />
 
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let topic of topics">
-    <td>{{ topic.topicTitle }}</td>
-    <td>{{ topic.topicDescription }}</td>
-    <td>
-      <button (click)="editTopic(topic.topicId)">Edit</button>
-      <button (click)="deleteTopic(topic.topicId)">Delete</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <label for="description">Description</label>
+  <textarea id="description" formControlName="topicDescription"></textarea>
+
+  <button type="submit">{{ isEditMode ? 'Update' : 'Create' }}</button>
+</form>
+
 
 
 <footer class="footer">
