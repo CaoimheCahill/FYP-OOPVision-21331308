@@ -32,7 +32,9 @@
       <ul class="nav-links">
         <li><a href="/admin/home">Home</a></li>
         <li><a href="/admin/users">Users</a></li>
-        <li><a href="/admin/content">Content</a></li>
+        <li><a href="/admin/topics">Topics</a></li>
+        <li><a href="/admin/quizzes">Quizzes</a></li>
+        <li><a href="/admin/visualExamples">Visual Examples</a></li>
         <button mat-stroked-button class="logout-btn" routerLink="/login">Log Out</button>
       </ul>
     </nav>
@@ -55,8 +57,10 @@
 
     <div class="right-section">
       <div class="buttons">
-        <button class="btn" [routerLink]="['/admin/users']">Users</button>
-        <button class="btn" [routerLink]="['/admin/content']">Content</button>
+        <button class="btn" [routerLink]="['/admin/users']">Manage Users</button>
+        <button class="btn" [routerLink]="['/admin/topics']">Manage Topics</button>
+        <button class="btn" [routerLink]="['/admin/quizzes']">Manage Quizzes</button>
+        <button class="btn" [routerLink]="['/admin/visualExamples']">Manage Examples</button>
       </div>
   </div>
 </div>

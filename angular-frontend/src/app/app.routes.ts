@@ -10,7 +10,9 @@ import {VisualExampleComponent} from './visual-example/visual-example.component'
 import {QuizComponent} from './quiz/quiz.component';
 import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
 import {AdminUsersComponent} from './admin/admin-users/admin-users.component';
-import {AdminContentComponent} from './admin/admin-content/admin-content.component';
+import {AdminTopicsComponent} from './admin/admin-topics/admin-topics.component';
+import {AdminQuizzesComponent} from './admin/admin-quizzes/admin-quizzes.component';
+import {AdminVisualExamplesComponent} from './admin/admin-visual-examples/admin-visual-examples.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -25,6 +27,7 @@ export const routes: Routes = [
   { path: 'topic/:topicId/quiz', component: QuizComponent},
   { path: 'admin/home', component: AdminHomeComponent},
   { path: 'admin/users', component: AdminUsersComponent},
-  { path: 'admin/content', component: AdminContentComponent}
-
+  { path: 'admin/topics', component: AdminTopicsComponent},
+  { path: 'admin/quizzes', component: AdminQuizzesComponent},
+  { path: 'admin/visualExamples', component: AdminVisualExamplesComponent}
 ];
