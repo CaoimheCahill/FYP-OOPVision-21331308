@@ -60,6 +60,7 @@ $button-color: #757575;
   }
 
 }
+
 h2 {
   font-family: 'Arial', sans-serif;
   margin: 1rem;
@@ -80,41 +81,22 @@ button {
     background-color: #FFDD8B;
   }
 }
+mat-horizontal-stepper {
+  margin: 1rem 0;
+}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.question-block {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+}
+
+.step-buttons {
   margin-top: 1rem;
-  font-family: 'Arial', sans-serif;
-
-  thead {
-    background-color: #f2f2f2;
-
-    th {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-  }
-
-  tbody {
-    tr {
-      border-bottom: 1px solid #ddd;
-
-      &:hover {
-        background-color: #f9f9f9;
-      }
-
-      td {
-        padding: 12px;
-        border: 1px solid #ddd;
-      }
-
-      td:last-child {
-        text-align: center;
-      }
-    }
-  }
+  display: flex;
+  justify-content: space-between;
 }
 
 

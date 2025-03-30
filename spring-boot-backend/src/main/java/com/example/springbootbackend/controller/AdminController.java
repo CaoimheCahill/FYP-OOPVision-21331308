@@ -1,5 +1,6 @@
 package com.example.springbootbackend.controller;
 
+import com.example.springbootbackend.dto.QuizDTO;
 import com.example.springbootbackend.model.Image;
 import com.example.springbootbackend.model.QuizQuestions;
 import com.example.springbootbackend.model.Quizzes;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -94,10 +96,23 @@ public class AdminController {
     //           QUIZZES
     // ------------------------------
 
+    @GetMapping("/quizzes")
+    public ResponseEntity<List<QuizDTO>> getAllQuizzes() {
+        List<QuizDTO> quizzes = quizService.getAllQuizzesWithTopicName();
+        return ResponseEntity.ok(quizzes);
+    }
+
     @GetMapping("/topics/{topicId}/quizzes")
     public ResponseEntity<List<Quizzes>> getQuizzesByTopic(@PathVariable Integer topicId) {
         List<Quizzes> quizzes = quizService.getQuizzesByTopicId(topicId);
         return ResponseEntity.ok(quizzes);
+    }
+
+    @GetMapping("/quizzes/{quizId}")
+    public ResponseEntity<Quizzes> getQuizById(@PathVariable Integer quizId) {
+        return quizService.getQuizById(quizId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/topics/{topicId}/quizzes")

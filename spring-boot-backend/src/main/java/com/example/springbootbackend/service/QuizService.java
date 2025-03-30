@@ -1,5 +1,6 @@
 package com.example.springbootbackend.service;
 
+import com.example.springbootbackend.dto.QuizDTO;
 import com.example.springbootbackend.model.Quizzes;
 import com.example.springbootbackend.model.QuizQuestions;
 import com.example.springbootbackend.model.Topic;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class QuizService {
@@ -31,6 +32,14 @@ public class QuizService {
         return quizQuestionsRepository.findByQuizId(quizId);
     }
 
+    public List<QuizDTO> getAllQuizzesWithTopicName() {
+        return quizzesRepository.findAllQuizzesWithTopicName();
+    }
+
+    public Optional<Quizzes> getQuizById(Integer quizId) {
+        return quizzesRepository.findById(quizId);
+    }
+
     public Quizzes createQuiz(Long topicId, Quizzes quiz) {
         Topic topic = topicRepository.findById(topicId)
                 .orElseThrow(() -> new RuntimeException("Topic not found"));
@@ -43,7 +52,6 @@ public class QuizService {
                 .orElseThrow(() -> new RuntimeException("Quiz not found"));
 
         existing.setTitle(updatedQuiz.getTitle());
-        // If you need to reassign a quiz to another topic, handle that here
         return quizzesRepository.save(existing);
     }
 

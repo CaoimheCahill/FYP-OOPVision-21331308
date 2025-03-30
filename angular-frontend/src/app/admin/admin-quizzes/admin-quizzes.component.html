@@ -1,1 +1,76 @@
-<p>admin-quizzes works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap Stylesheet -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./admin-quizzes.component.scss">
+</head>
+
+<body>
+
+<mat-toolbar class="custom-toolbar">
+  <div class="toolbar-left">
+    <img ngSrc="assets/Logo.png" alt="Logo" class="toolbar-logo" height="365" width="928"/>
+  </div>
+
+  <div class="toolbar-right">
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/admin/home">Home</a></li>
+        <li><a href="/admin/users">Users</a></li>
+        <li><a href="/admin/topics">Topics</a></li>
+        <li><a href="/admin/quizzes">Quizzes</a></li>
+        <li><a href="/admin/visualExamples">Visual Examples</a></li>
+        <button mat-stroked-button class="logout-btn" routerLink="/login">Log Out</button>
+      </ul>
+    </nav>
+  </div>
+</mat-toolbar>
+
+<h2>Manage Quizzes</h2>
+
+  <button (click)="createQuiz()">
+    Create New Quiz
+  </button>
+
+<table>
+  <thead >
+  <tr>
+    <th>Title</th>
+    <th>Topic Name</th>
+    <th>Topic Id</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let quiz of quizzes">
+    <td>{{ quiz.title }}</td>
+    <td>{{ quiz.topicTitle }}</td>
+    <td>{{ quiz.topicId }}</td>
+    <td>
+      <button  (click)="editQuiz(quiz.quizId)">Edit</button>
+      <button (click)="deleteQuiz(quiz.quizId)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<footer class="footer">
+  © 2024 Copyright OOP Vision. All Rights Reserved
+</footer>
+</body>
+</html>
