@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 
 export interface Image {
   imageId: number;
-  topicId: number;
+  visualExampleId: number;
   imagePath: string;
   imageSide: 'left' | 'right';
   orderIndex: number;
@@ -20,7 +20,7 @@ export class ImageService {
 
   constructor(private http: HttpClient) {}
 
-  getImagesByTopic(topicId: number): Observable<Image[]> {
-    return this.http.get<Image[]>(`${this.apiUrl}/${topicId}`);
+  getImagesByVisualExampleId(visualExampleId: number): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.apiUrl}/${visualExampleId}`);
   }
 }
