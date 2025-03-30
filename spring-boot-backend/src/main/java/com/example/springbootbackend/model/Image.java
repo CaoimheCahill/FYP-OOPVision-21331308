@@ -2,7 +2,6 @@ package com.example.springbootbackend.model;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "images")
 public class Image {
@@ -10,11 +9,10 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageId;
 
-    private Integer topicId;
     private String imagePath;
     private String imageSide;
     private int orderIndex;
-
+    private int visualExampleId;
 
     public Long getImageId() {
         return imageId;
@@ -22,14 +20,6 @@ public class Image {
 
     public void setImageId(Long imageId) {
         this.imageId = imageId;
-    }
-
-    public Integer getTopicId() {
-        return topicId;
-    }
-
-    public void setTopicId(Integer topicId) {
-        this.topicId = topicId;
     }
 
     public String getImagePath() {
@@ -56,4 +46,11 @@ public class Image {
         this.orderIndex = orderIndex;
     }
 
+    public int getVisualExampleId() {
+        return visualExampleId;
+    }
+
+    public void setVisualExampleId(int visualExampleId) {
+        this.visualExampleId = visualExampleId;
+    }
 }

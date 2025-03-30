@@ -2,8 +2,10 @@ package com.example.springbootbackend.service;
 
 import com.example.springbootbackend.model.Image;
 import com.example.springbootbackend.model.Topic;
+import com.example.springbootbackend.model.VisualExample;
 import com.example.springbootbackend.repository.ImageRepository;
 import com.example.springbootbackend.repository.TopicRepository;
+import com.example.springbootbackend.repository.VisualExampleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,22 +20,22 @@ public class ImageService {
     private ImageRepository imageRepository;
 
     @Autowired
-    private TopicRepository topicRepository;
-
-    @Autowired
     private AzureBlobStorageService azureBlobStorageService;
 
-    public List<Image> getImagesByTopicId(Long topicId) {
-        return imageRepository.findByTopicId(topicId);
+    @Autowired
+    private VisualExampleRepository visualExampleRepository;
+
+    public List<Image> getImagesByExampleId(Integer visualExampleId) {
+        return imageRepository.findByVisualExampleId(visualExampleId);
     }
 
-    public Image addImage(Integer topicId, MultipartFile file, Image imageDetails) {
-        Topic topic = topicRepository.findById(Long.valueOf(topicId))
+    public Image addImage(Integer visualExampleId, MultipartFile file, Image imageDetails) {
+        VisualExample visualExample = visualExampleRepository.findById(visualExampleId)
                 .orElseThrow(() -> new RuntimeException("Topic not found"));
 
         String blobUrl = azureBlobStorageService.uploadFile(file);
 
-        imageDetails.setTopicId(topicId);
+        imageDetails.setVisualExampleId(visualExampleId);
         imageDetails.setImagePath(blobUrl);
 
         return imageRepository.save(imageDetails);

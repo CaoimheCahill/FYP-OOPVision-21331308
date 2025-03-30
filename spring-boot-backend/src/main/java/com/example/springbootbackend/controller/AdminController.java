@@ -1,10 +1,7 @@
 package com.example.springbootbackend.controller;
 
 import com.example.springbootbackend.dto.QuizDTO;
-import com.example.springbootbackend.model.Image;
-import com.example.springbootbackend.model.QuizQuestions;
-import com.example.springbootbackend.model.Quizzes;
-import com.example.springbootbackend.model.Topic;
+import com.example.springbootbackend.model.*;
 import com.example.springbootbackend.repository.UserRepository;
 import com.example.springbootbackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +33,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private VisualExampleService visualExampleService;
 
     // ------------------------------
     //           USER
@@ -162,18 +162,55 @@ public class AdminController {
     }
 
     // ------------------------------
+    //       VISUAL EXAMPLE
+    // ------------------------------
+
+    @GetMapping("/example/topics/{topicId}")
+    public ResponseEntity<List<VisualExample>> getVisualExamplesByTopic(@PathVariable Integer topicId) {
+        List<VisualExample> examples = visualExampleService.getVisualExamplesByTopicId(topicId);
+        return ResponseEntity.ok(examples);
+    }
+
+    @GetMapping("/example/{id}")
+    public ResponseEntity<VisualExample> getVisualExampleById(@PathVariable Integer id) {
+        VisualExample example = visualExampleService.getVisualExampleById(id);
+        return ResponseEntity.ok(example);
+    }
+
+    @PostMapping("/example/topics/{topicId}")
+    public ResponseEntity<VisualExample> createVisualExample(@PathVariable Integer topicId,
+                                                             @RequestBody VisualExample visualExample) {
+        visualExample.setTopicId(topicId);
+        VisualExample created = visualExampleService.createVisualExample(visualExample);
+        return ResponseEntity.ok(created);
+    }
+
+    @PutMapping("/example/{id}")
+    public ResponseEntity<VisualExample> updateVisualExample(@PathVariable Integer id,
+                                                             @RequestBody VisualExample visualExample) {
+        VisualExample updated = visualExampleService.updateVisualExample(id, visualExample);
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/example/{id}")
+    public ResponseEntity<String> deleteVisualExample(@PathVariable Integer id) {
+        visualExampleService.deleteVisualExample(id);
+        return ResponseEntity.ok("Visual example deleted");
+    }
+
+    // ------------------------------
     //           IMAGES
     // ------------------------------
 
-    @GetMapping("/topics/{topicId}/images")
-    public ResponseEntity<List<Image>> getImagesByTopic(@PathVariable Long topicId) {
-        List<Image> images = imageService.getImagesByTopicId(topicId);
+    @GetMapping("/visualexamples/{visualExampleId}/images")
+    public ResponseEntity<List<Image>> getImagesByVisualExample(@PathVariable Integer visualExampleId) {
+        List<Image> images = imageService.getImagesByExampleId(visualExampleId);
         return ResponseEntity.ok(images);
     }
 
-    @PostMapping("/topics/{topicId}/images")
+    @PostMapping("/visualexamples/{visualExampleId}/images")
     public ResponseEntity<Image> addImage(
-            @PathVariable Integer topicId,
+            @PathVariable Integer visualExampleId,
             @RequestParam("file") MultipartFile file,
             @RequestParam(value = "imageSide", required = false) String imageSide,
             @RequestParam(value = "orderIndex", required = false) Integer orderIndex) {
@@ -181,7 +218,7 @@ public class AdminController {
         Image imageDetails = new Image();
         imageDetails.setImageSide(imageSide);
         imageDetails.setOrderIndex(orderIndex != null ? orderIndex : 0);
-        Image created = imageService.addImage(topicId, file, imageDetails);
+        Image created = imageService.addImage(visualExampleId, file, imageDetails);
         return ResponseEntity.ok(created);
     }
 
