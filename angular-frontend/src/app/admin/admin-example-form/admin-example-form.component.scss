@@ -61,55 +61,64 @@ $button-color: #757575;
 
 }
 
-.admin-visual-example-topics {
+.visual-example-form {
+  width:80%;
+  margin: 20px auto;
   padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
 
   h2 {
+    text-align: center;
     font-family: 'Arial', sans-serif;
     margin: 1rem;
     color: #333;
   }
 
-  .topics-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    font-family: 'Arial', sans-serif;
+  .form-group {
+    margin-bottom: 15px;
 
-    thead {
-      background-color: #f2f2f2;
-
-      th {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: left;
-      }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
     }
 
-    tbody {
-      tr {
-        border-bottom: 1px solid #ddd;
-
-        &:hover {
-          background-color: #f9f9f9;
-        }
-
-        td {
-          padding: 12px;
-          border: 1px solid #ddd;
-        }
-      }
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
+  }
+
+  .part-group {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
   }
 
   button {
     background-color: $primary-color;
     color: #fff;
     border: none;
-    padding: 8px 12px;
-    margin: 1rem;
+    padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
+    margin-right: 10px;
     transition: background-color 0.3s ease;
 
     &:hover {
@@ -117,6 +126,7 @@ $button-color: #757575;
     }
   }
 }
+
 
 
 

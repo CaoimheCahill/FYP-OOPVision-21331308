@@ -17,7 +17,7 @@
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" type="text/css" href="./admin-visual-examples.component.scss">
+  <link rel="stylesheet" type="text/css" href="./admin-manage-example.component.scss">
 </head>
 
 <body>
@@ -41,25 +41,29 @@
   </div>
 </mat-toolbar>
 
-<div class="admin-visual-example-topics">
-  <h2>Manage Visual Examples by Topic</h2>
-  <table class="topics-table">
+<div class="manage-visual-examples">
+  <h2>Manage Visual Examples for Topic {{ topicId }}</h2>
+  <button (click)="createNew()">Create New Visual Example</button>
+  <table>
     <thead>
     <tr>
-      <th>Topic Title</th>
+      <th>Name</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let topic of topics">
-      <td>{{ topic.topicTitle }}</td>
+    <tr *ngFor="let example of visualExamples">
+      <td>{{ example.name }}</td>
       <td>
-        <button (click)="manageVisualExamples(topic)">Manage Visual Examples</button>
+        <button (click)="editExample(example)">Edit</button>
+        <button (click)="deleteExample(example)">Delete</button>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
+
+
 
 
 <footer class="footer">

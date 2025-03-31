@@ -15,6 +15,8 @@ import {AdminQuizzesComponent} from './admin/admin-quizzes/admin-quizzes.compone
 import {AdminVisualExamplesComponent} from './admin/admin-visual-examples/admin-visual-examples.component';
 import {TopicsFormComponent} from './admin/topics-form/topics-form.component';
 import {QuizWizardComponent} from './admin/quiz-wizard/quiz-wizard.component';
+import {AdminManageExampleComponent} from './admin/admin-manage-example/admin-manage-example.component';
+import {AdminExampleFormComponent} from './admin/admin-example-form/admin-example-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
@@ -32,8 +34,11 @@ export const routes: Routes = [
   { path: 'admin/topics', component: AdminTopicsComponent},
   { path: 'admin/quizzes', component: AdminQuizzesComponent},
   { path: 'admin/visualExamples', component: AdminVisualExamplesComponent},
+  { path: 'admin/topics/:topicId/examples', component: AdminManageExampleComponent },
   { path: 'admin/topics/new', component: TopicsFormComponent },
   { path: 'admin/topics/:id/edit', component: TopicsFormComponent },
+  { path: 'admin/topics/:topicId/visualExample/:visualExampleId', component: AdminExampleFormComponent },
+  { path: 'admin/topics/:topicId/visualExample/new', component: AdminExampleFormComponent },
   { path: 'admin/quizzes/new', component: QuizWizardComponent },
   { path: 'admin/quizzes/:id/edit', component: QuizWizardComponent }
 ];

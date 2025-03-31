@@ -202,13 +202,13 @@ public class AdminController {
     //           IMAGES
     // ------------------------------
 
-    @GetMapping("/visualexamples/{visualExampleId}/images")
+    @GetMapping("/example/{visualExampleId}/images")
     public ResponseEntity<List<Image>> getImagesByVisualExample(@PathVariable Integer visualExampleId) {
         List<Image> images = imageService.getImagesByExampleId(visualExampleId);
         return ResponseEntity.ok(images);
     }
 
-    @PostMapping("/visualexamples/{visualExampleId}/images")
+    @PostMapping("/example/{visualExampleId}/images")
     public ResponseEntity<Image> addImage(
             @PathVariable Integer visualExampleId,
             @RequestParam("file") MultipartFile file,
@@ -218,11 +218,12 @@ public class AdminController {
         Image imageDetails = new Image();
         imageDetails.setImageSide(imageSide);
         imageDetails.setOrderIndex(orderIndex != null ? orderIndex : 0);
+        System.out.println(imageDetails);
         Image created = imageService.addImage(visualExampleId, file, imageDetails);
         return ResponseEntity.ok(created);
     }
 
-    @PutMapping("/images/{imageId}")
+    @PutMapping("/example/images/{imageId}")
     public ResponseEntity<Image> updateImage(
             @PathVariable Integer imageId,
             @RequestParam(value = "file", required = false) MultipartFile file,
@@ -233,7 +234,7 @@ public class AdminController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping("/images/{imageId}")
+    @DeleteMapping("/example/images/{imageId}")
     public ResponseEntity<String> deleteImage(@PathVariable Integer imageId) {
         imageService.deleteImage(imageId);
         return ResponseEntity.ok("Image deleted");

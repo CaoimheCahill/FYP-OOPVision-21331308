@@ -60,8 +60,7 @@ $button-color: #757575;
   }
 
 }
-
-.admin-visual-example-topics {
+.manage-visual-examples {
   padding: 20px;
 
   h2 {
@@ -70,53 +69,38 @@ $button-color: #757575;
     color: #333;
   }
 
-  .topics-table {
+  button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: $primary-color;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #FFDD8B;
+    }
+  }
+
+  table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
     font-family: 'Arial', sans-serif;
 
-    thead {
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
       background-color: #f2f2f2;
-
-      th {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: left;
-      }
-    }
-
-    tbody {
-      tr {
-        border-bottom: 1px solid #ddd;
-
-        &:hover {
-          background-color: #f9f9f9;
-        }
-
-        td {
-          padding: 12px;
-          border: 1px solid #ddd;
-        }
-      }
-    }
-  }
-
-  button {
-    background-color: $primary-color;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    margin: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #FFDD8B;
     }
   }
 }
+
 
 
 
@@ -128,6 +112,7 @@ $button-color: #757575;
   color: $text-color;
   font-size: 0.9rem;
   margin-top: 2rem;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
