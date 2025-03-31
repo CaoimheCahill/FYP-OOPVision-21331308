@@ -32,44 +32,41 @@
       <ul class="nav-links">
         <li><a href="/admin/home">Home</a></li>
         <li><a href="/admin/users">Users</a></li>
-        <li><a href="/admin/content">Content</a></li>
+        <li><a href="/admin/topics">Topics</a></li>
+        <li><a href="/admin/quizzes">Quizzes</a></li>
+        <li><a href="/admin/visualExamples">Visual Examples</a></li>
         <button mat-stroked-button class="logout-btn" routerLink="/login">Log Out</button>
       </ul>
     </nav>
   </div>
 </mat-toolbar>
 
-<table mat-table [dataSource]="users" class="mat-elevation-z8">
+<div class="admin-users">
+  <h2>Manage Users</h2>
 
-  <!-- Email Column -->
-  <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef class="colName"> Email </th>
-    <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
-  </ng-container>
-
-  <!-- Role Column -->
-  <ng-container matColumnDef="role">
-    <th mat-header-cell *matHeaderCellDef class="colName"> Role </th>
-    <td mat-cell *matCellDef="let user"> {{ user.userRole }} </td>
-  </ng-container>
-
-  <!-- Actions Column -->
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef class="colName"> Actions </th>
-    <td mat-cell *matCellDef="let user">
-      <!-- Delete Button -->
-      <button mat-button color="warn" (click)="deleteUser(user)">Delete</button>
-
-      <!-- Toggle Role Button -->
-      <button mat-button color="primary" (click)="toggleRole(user)">
+<table class="user-table">
+  <thead>
+  <tr>
+    <th class="colName">Email</th>
+    <th class="colName">Role</th>
+    <th class="colName">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{ user.email }}</td>
+    <td>{{ user.userRole }}</td>
+    <td>
+      <button (click)="deleteUser(user)">Delete</button>
+      <button (click)="toggleRole(user)">
         {{ user.userRole === 'ADMIN' ? 'Demote to User' : 'Promote to Admin' }}
       </button>
     </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </tr>
+  </tbody>
 </table>
+</div>
+
 
 
 

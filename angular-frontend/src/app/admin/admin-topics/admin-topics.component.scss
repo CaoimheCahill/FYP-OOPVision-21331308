@@ -82,37 +82,41 @@ button {
   }
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  font-family: 'Arial', sans-serif;
+.admin-topics {
+  padding: 20px;
 
-  thead {
-    background-color: #f2f2f2;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-family: 'Arial', sans-serif;
 
-    th {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-  }
+    thead {
+      background-color: #f2f2f2;
 
-  tbody {
-    tr {
-      border-bottom: 1px solid #ddd;
-
-      &:hover {
-        background-color: #f9f9f9;
-      }
-
-      td {
+      th {
         padding: 12px;
         border: 1px solid #ddd;
+        text-align: left;
       }
+    }
 
-      td:last-child {
-        text-align: center;
+    tbody {
+      tr {
+        border-bottom: 1px solid #ddd;
+
+        &:hover {
+          background-color: #f9f9f9;
+        }
+
+        td {
+          padding: 12px;
+          border: 1px solid #ddd;
+        }
+
+        td:last-child {
+          text-align: center;
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {User, UserService} from '../../service/user.service';
 import {Title} from '@angular/platform-browser';
@@ -15,7 +15,8 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     NgOptimizedImage,
     RouterLink,
-    MatTableModule
+    MatTableModule,
+    NgForOf
   ],
   templateUrl: './admin-users.component.html',
   styleUrl: './admin-users.component.scss'
