@@ -28,7 +28,7 @@ export class AdminUsersComponent implements OnInit{
   users: any[] = [];
 
   ngOnInit(): void {
-    this.titleService.setTitle('Admin Home');
+    this.titleService.setTitle('Manage Users');
     this.loadUsers();
   }
 

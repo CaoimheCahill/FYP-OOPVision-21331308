@@ -4,6 +4,7 @@ import {Router, RouterLink} from '@angular/router';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-quizzes',
@@ -16,9 +17,10 @@ export class AdminQuizzesComponent implements OnInit{
   quizzes: Quiz[] = [];
   topicId = 1;
 
-  constructor(private quizService: QuizService, private router: Router) {}
+  constructor(private quizService: QuizService, private router: Router, private titleService: Title) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Manage Quizzes');
     this.loadQuizzes();
   }
 

@@ -10,6 +10,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-quiz-wizard',
@@ -45,10 +46,12 @@ export class QuizWizardComponent implements OnInit {
     private fb: FormBuilder,
     private quizService: QuizService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Manage Quizzes');
     // Initialize quiz details form
     this.quizDetailsForm = this.fb.group({
       title: ['', Validators.required],

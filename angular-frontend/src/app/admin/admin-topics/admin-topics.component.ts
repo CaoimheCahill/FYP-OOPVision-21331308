@@ -4,6 +4,7 @@ import {Router, RouterLink} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-topics',
@@ -23,10 +24,12 @@ export class AdminTopicsComponent implements OnInit{
 
   constructor(
     private topicService: TopicService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Manage Topics');
     this.loadTopics();
   }
 

@@ -5,6 +5,7 @@ import {TopicService} from '../../service/topic.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-topics-form',
@@ -29,10 +30,12 @@ export class TopicsFormComponent implements OnInit{
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private topicService: TopicService
+    private topicService: TopicService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Manage Topics');
     // Build the form
     this.topicForm = this.fb.group({
       topicTitle: ['', Validators.required],
