@@ -54,7 +54,7 @@
         <input matInput type="number" formControlName="topicId" />
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext [disabled]="quizDetailsForm.invalid">
+        <button class="button" matStepperNext [disabled]="quizDetailsForm.invalid">
           Next
         </button>
       </div>
@@ -107,13 +107,10 @@
                 <input matInput [formControlName]="j" />
               </mat-form-field>
               <button
-                mat-icon-button
-                color="warn"
                 type="button"
                 class="remove-option-btn"
                 (click)="removeOption(qControl, j)"
-              >
-                <mat-icon>remove_circle</mat-icon>
+              > Remove
               </button>
             </div>
 
@@ -152,11 +149,9 @@
         + Add Question
       </button>
       <div class="step-buttons">
-        <button mat-button matStepperPrevious>Back</button>
+        <button class="button" matStepperPrevious>Back</button>
         <button
-          mat-button
-          color="accent"
-          type="button"
+          class ="button"
           (click)="submitWizard()"
         >
           Finish
