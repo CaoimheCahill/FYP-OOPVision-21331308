@@ -41,12 +41,10 @@ export class AdminTopicsComponent implements OnInit{
   }
 
   createTopic(): void {
-    // Navigate to the form for creating a new topic
     this.router.navigate(['/admin/topics/new']);
   }
 
   editTopic(topicId: number): void {
-    // Navigate to the form for editing an existing topic
     this.router.navigate(['/admin/topics', topicId, 'edit']);
   }
 
@@ -54,10 +52,7 @@ export class AdminTopicsComponent implements OnInit{
     if (confirm('Are you sure you want to delete this topic?')) {
       this.topicService.deleteTopic(topicId).subscribe({
         next: () => {
-          // Option 1: reload from server
           this.loadTopics();
-          // Option 2: remove from array:
-          // this.topics = this.topics.filter(t => t.topic_id !== topicId);
         },
         error: (err) => console.error('Error deleting topic:', err)
       });

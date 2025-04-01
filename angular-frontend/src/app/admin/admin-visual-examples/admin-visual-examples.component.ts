@@ -38,8 +38,6 @@ export class AdminVisualExamplesComponent implements OnInit{
   }
 
   manageVisualExamples(topic: Topic): void {
-    // Navigate to the page where visual examples for this topic are managed.
-    // For example, the route can be: /admin/topics/:topicId/examples
     this.router.navigate(['/admin/topics', topic.topicId, 'examples']);
   }
 

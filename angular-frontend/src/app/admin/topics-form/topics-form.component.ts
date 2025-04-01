@@ -24,7 +24,7 @@ import {Title} from '@angular/platform-browser';
 export class TopicsFormComponent implements OnInit{
   topicForm!: FormGroup;
   isEditMode = false;
-  topicId?: number; // store the ID if editing
+  topicId?: number;
 
   constructor(
     private fb: FormBuilder,
@@ -36,13 +36,12 @@ export class TopicsFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Topics');
-    // Build the form
     this.topicForm = this.fb.group({
       topicTitle: ['', Validators.required],
       topicDescription: ['', Validators.required]
     });
 
-    // Check if we have an ID in the URL
+
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
@@ -56,7 +55,6 @@ export class TopicsFormComponent implements OnInit{
   loadTopic(id: number): void {
     this.topicService.getTopicById(id).subscribe({
       next: (topic) => {
-        // Patch form with existing data
         this.topicForm.patchValue({
           topic_title: topic.topicTitle,
           topic_description: topic.topicDescription
@@ -68,12 +66,11 @@ export class TopicsFormComponent implements OnInit{
 
   onSubmit(): void {
     if (this.topicForm.invalid) {
-      return; // or show some validation errors
+      return;
     }
 
-    const formValues = this.topicForm.value; // { topic_title: ..., topic_description: ... }
+    const formValues = this.topicForm.value;
     if (this.isEditMode && this.topicId) {
-      // Update existing topic
       this.topicService.updateTopic(this.topicId, formValues).subscribe({
         next: () => {
           alert('Topic updated successfully!');
@@ -82,7 +79,6 @@ export class TopicsFormComponent implements OnInit{
         error: (err) => console.error('Error updating topic:', err)
       });
     } else {
-      // Create new topic
       this.topicService.createTopic(formValues).subscribe({
         next: () => {
           alert('Topic created successfully!');

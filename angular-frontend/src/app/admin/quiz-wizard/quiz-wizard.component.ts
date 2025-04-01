@@ -52,13 +52,11 @@ export class QuizWizardComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Quizzes');
-    // Initialize quiz details form
     this.quizDetailsForm = this.fb.group({
       title: ['', Validators.required],
       topicId: [null, Validators.required]
     });
 
-    // Initialize questions form group with an empty FormArray
     this.questionsStepForm = this.fb.group({
       questions: this.fb.array([])
     });

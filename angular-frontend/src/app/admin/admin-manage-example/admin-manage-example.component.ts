@@ -45,7 +45,6 @@ export class AdminManageExampleComponent implements OnInit{
   }
 
   createNew(): void {
-    // Navigate to the page for creating a new visual example
     this.router.navigate(['/admin/topics', this.topicId, 'visualExample', 'new']);
   }
 

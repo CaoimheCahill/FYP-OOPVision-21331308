@@ -25,10 +25,8 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 export class AdminExampleFormComponent implements OnInit{
   exampleForm!: FormGroup;
   topicId!: number;
-  visualExampleId?: number; // Defined in edit mode
+  visualExampleId?: number;
 
-  // Instead of a single left/right file, we'll store an array of parts.
-  // Each part represents a "page" or "part" of the visual example.
   parts: Array<{
     orderIndex: number;
     leftFile?: File;
@@ -46,16 +44,12 @@ export class AdminExampleFormComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    // Get topicId from route params
     this.topicId = +this.route.snapshot.paramMap.get('topicId')!;
-    // Initialize the form for VisualExample metadata
     this.exampleForm = this.fb.group({
       name: ['', Validators.required]
     });
-    // Initialize with one part by default
     this.parts.push({ orderIndex: 1 });
 
-    // Check if we're in edit mode by looking for a visualExampleId param
     const veIdParam = this.route.snapshot.paramMap.get('visualExampleId');
     if (veIdParam && veIdParam !== 'new') {
       this.visualExampleId = +veIdParam;
@@ -64,14 +58,11 @@ export class AdminExampleFormComponent implements OnInit{
   }
 
   loadVisualExample(): void {
-    // Load visual example details
     this.visualExampleService.getVisualExampleById(this.visualExampleId!).subscribe({
       next: (example) => {
         this.exampleForm.patchValue({ name: example.name });
-        // Also load associated images for this visual example
         this.imageService.getImagesByVisualExampleId(this.visualExampleId!).subscribe({
           next: (images) => {
-            // Group images by orderIndex to populate parts array
             const partsMap = new Map<number, any>();
             images.forEach(img => {
               const part = partsMap.get(img.orderIndex) || { orderIndex: img.orderIndex };
@@ -82,7 +73,6 @@ export class AdminExampleFormComponent implements OnInit{
               }
               partsMap.set(img.orderIndex, part);
             });
-            // Replace the parts array with the grouped parts
             this.parts = Array.from(partsMap.values()).sort((a, b) => a.orderIndex - b.orderIndex);
           },
           error: (err) => console.error('Error loading images:', err)
@@ -101,7 +91,6 @@ export class AdminExampleFormComponent implements OnInit{
   }
 
   addPart(): void {
-    // Determine the new part order index (next sequential number)
     const newIndex = this.parts.length > 0 ? Math.max(...this.parts.map(p => p.orderIndex)) + 1 : 1;
     this.parts.push({ orderIndex: newIndex });
   }
@@ -132,7 +121,6 @@ export class AdminExampleFormComponent implements OnInit{
       })
       .catch(err => {
         console.error('Error deleting images for part:', err);
-        // Optionally handle errors (e.g., show a message to the admin)
       });
   }
 

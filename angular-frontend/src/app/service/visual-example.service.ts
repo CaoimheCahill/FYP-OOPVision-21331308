@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Image} from './image.service';
 
 export interface VisualExample {
   visualExampleId: number;
