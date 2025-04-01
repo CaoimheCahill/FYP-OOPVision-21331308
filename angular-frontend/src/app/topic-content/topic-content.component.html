@@ -57,11 +57,22 @@
   <h1>{{ topic.topicTitle }}</h1>
   <p>{{ topic.topicDescription }}</p>
 
-  <div class="buttons">
-    <button class="btn" [routerLink]="['/topic/', topic.topicId, 'visualExample']">Visual Example</button>
-    <button class="btn" [routerLink]="['/topic/', topic.topicId, 'quiz']">Quiz</button>
-  </div>
+    <div class="buttons">
+      <!-- If there are visual examples, show a button for each one -->
+      <ng-container *ngIf="visualExamples.length > 0; else noExample">
+        <button
+          *ngFor="let example of visualExamples"
+          class="btn"
+          [routerLink]="['/topic', topic.topicId, 'visualExample', example.visualExampleId]">
+          {{ example.name }}
+        </button>
+      </ng-container>
+      <ng-template #noExample>
+        <p>No visual examples available for this topic.</p>
+      </ng-template>
 
+      <button class="btn" [routerLink]="['/topic', topic.topicId, 'quiz']">Quiz</button>
+    </div>
   </div>
 </div>
 <div *ngIf="!topic">

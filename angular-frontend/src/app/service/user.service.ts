@@ -6,12 +6,15 @@ import {jwtDecode, JwtPayload} from 'jwt-decode';
 
 export interface TokenPayload extends JwtPayload {
   userId?: number;
+  role?: string;
 }
 
 export interface User {
+  userId: number;
   token: string;
   email: string;
   password: string;
+  userRole: string;
 }
 
 @Injectable({
@@ -22,6 +25,25 @@ export class UserService {
   private baseUrl = environment.apiBaseUrl + '/api/users';
 
   constructor(private http: HttpClient) { }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiBaseUrl}/api/admin/all`);
+  }
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(`${environment.apiBaseUrl}/api/admin/users/${userId}`,
+      { responseType: 'text' as 'json' });
+  }
+
+  promoteUser(userId: number): Observable<any> {
+    return this.http.put(`${environment.apiBaseUrl}/api/admin/users/${userId}/promote`, {},
+      { responseType: 'text' as 'json' });
+  }
+
+  demoteUser(userId: number): Observable<any> {
+    return this.http.put(`${environment.apiBaseUrl}/api/admin/users/${userId}/demote`, {},
+      { responseType: 'text' as 'json' });
+  }
 
   register(user: User): Observable<User>{
     return this.http.post<User>(`${this.baseUrl}/register`, user)

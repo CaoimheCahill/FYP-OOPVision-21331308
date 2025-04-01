@@ -14,8 +14,8 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-    @GetMapping("/{topicId}")
-    public List<Image> getImagesByTopic(@PathVariable Long topicId) {
-        return imageService.getImagesByTopicId(topicId);
+    @GetMapping("/{visualExampleId}")
+    public List<Image> getImagesByVisualExample(@PathVariable Integer visualExampleId) {
+        return imageService.getImagesByExampleId(visualExampleId);
     }
 }

@@ -23,6 +23,7 @@ import {ProgressService} from '../service/progress.service';
 })
 export class VisualExampleComponent implements OnInit{
   topicId!: number;
+  visualExampleId!: number;
   images: Image[] = [];
   leftImages: Image[] = [];
   rightImages: Image[] = [];
@@ -36,12 +37,13 @@ export class VisualExampleComponent implements OnInit{
     this.titleService.setTitle('Visual Example');
     this.route.params.subscribe(params => {
       this.topicId = +params['topicId'];
+      this.visualExampleId = +params['visualExampleId'];
       this.fetchImages();
     });
   }
 
   fetchImages(): void {
-    this.imageService.getImagesByTopic(this.topicId).subscribe(data => {
+    this.imageService.getImagesByVisualExampleId(this.visualExampleId).subscribe(data => {
       this.images = data;
 
       // Split into left and right images

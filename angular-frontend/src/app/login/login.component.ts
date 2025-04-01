@@ -7,7 +7,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {UserService} from '../service/user.service';
+import {TokenPayload, UserService} from '../service/user.service';
+import {jwtDecode} from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -40,12 +41,20 @@ export class LoginComponent implements OnInit{
     if (this.loginData.email && this.loginData.password) {
       this.userService.login(this.loginData).subscribe(
         (response) => {
+          // 1. Save the token in local storage
           this.userService.saveToken(response.token);
-          alert('Login successful!');
-          console.log('Response:', response);
 
-          // Navigate to the home page after login
-          this.router.navigate(['/home']);
+          // 2. Decode the token
+          const decoded = jwtDecode<TokenPayload>(response.token);
+          console.log(decoded);
+          // 3. Check the role claim
+          if (decoded.role === 'ADMIN') {
+            // Navigate to the admin page if the user is an admin
+            this.router.navigate(['/admin/home']);
+          } else {
+            // Otherwise navigate to the standard home page
+            this.router.navigate(['/home']);
+          }
         },
         (error) => {
           this.errorMessage = 'Invalid email or password';
@@ -56,4 +65,5 @@ export class LoginComponent implements OnInit{
       alert('Please fill in all required fields');
     }
   }
+
 }
