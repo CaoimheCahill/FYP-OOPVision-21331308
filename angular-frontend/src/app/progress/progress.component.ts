@@ -28,6 +28,7 @@ export class ProgressComponent implements OnInit{
   completionPercentage: number = 0;
   totalTopics: number = 0;
   userId: number | null | undefined;
+  totalTopicsCompleted: number = 0;
 
   constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService, private userService: UserService) {}
 
@@ -39,6 +40,7 @@ export class ProgressComponent implements OnInit{
     this.progressService.getUserProgress(this.userId).subscribe((data) => {
       this.progressData = data.progress || [];
       this.completionPercentage = data.completionPercentage;
+      this.totalTopicsCompleted = this.progressData.filter(item => item.completed).length;
       console.log(this.progressData)
     });
 
@@ -54,6 +56,7 @@ export class ProgressComponent implements OnInit{
   }
 
   get offset() {
+    console.log(this.completionPercentage);
     return this.circumference * (1 - this.completionPercentage / 100);
   }
 
