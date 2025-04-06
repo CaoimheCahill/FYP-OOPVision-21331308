@@ -55,7 +55,7 @@
 <div class="topic-detail-container" *ngIf="topic">
   <div class="content">
   <h1>{{ topic.topicTitle }}</h1>
-  <p>{{ topic.topicDescription }}</p>
+    <markdown [data]="topic.topicDescription"></markdown>
 
     <div class="buttons">
       <!-- If there are visual examples, show a button for each one -->
