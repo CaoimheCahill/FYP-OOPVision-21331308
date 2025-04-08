@@ -20,7 +20,6 @@ bootstrapApplication(AppComponent, {
         { path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
         { path: 'topics', loadComponent: () => import('./topics/topics.component').then(m => m.TopicsComponent) },
         { path: 'progress', loadComponent: () => import('./progress/progress.component').then(m => m.ProgressComponent) },
-        { path: 'editProfile', loadComponent: () => import('./edit-profile/edit-profile.component').then(m => m.EditProfileComponent) },
       ]),
       BrowserAnimationsModule,
       FormsModule,

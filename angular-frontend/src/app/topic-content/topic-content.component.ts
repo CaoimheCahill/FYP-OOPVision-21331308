@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
 import {VisualExample, VisualExampleService} from '../service/visual-example.service';
+import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
   selector: 'app-topic-content',
@@ -17,7 +18,8 @@ import {VisualExample, VisualExampleService} from '../service/visual-example.ser
     MatToolbarModule,
     NgOptimizedImage,
     RouterLink,
-    NgForOf
+    NgForOf,
+    MarkdownModule
   ],
   templateUrl: './topic-content.component.html',
   styleUrl: './topic-content.component.scss'
