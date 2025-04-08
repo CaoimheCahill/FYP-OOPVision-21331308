@@ -46,7 +46,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Password</mat-label>
+        <mat-label>Password (8 characters or more)</mat-label>
         <input matInput type="password" name="password" required [(ngModel)]="loginData.password" #password="ngModel" autocomplete="password">
         <mat-error *ngIf="password.invalid && password.touched">Password is required</mat-error>
       </mat-form-field>
