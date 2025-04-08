@@ -56,8 +56,8 @@ export class TopicsFormComponent implements OnInit{
     this.topicService.getTopicById(id).subscribe({
       next: (topic) => {
         this.topicForm.patchValue({
-          topic_title: topic.topicTitle,
-          topic_description: topic.topicDescription
+          topicTitle: topic.topicTitle,
+          topicDescription: topic.topicDescription
         });
       },
       error: (err) => console.error('Error loading topic:', err)
