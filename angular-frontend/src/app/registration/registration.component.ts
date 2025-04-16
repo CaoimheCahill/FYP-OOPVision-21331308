@@ -8,6 +8,7 @@ import {Router, RouterLink} from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
 import {UserService} from '../service/user.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -28,7 +29,7 @@ import {UserService} from '../service/user.service';
 export class RegistrationComponent implements OnInit{
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService, private toastr: ToastrService) {
     this.registrationForm = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -64,18 +65,20 @@ export class RegistrationComponent implements OnInit{
             // Store the token in localStorage or sessionStorage
             localStorage.setItem('token', response.token);
           }
-          alert('Registration successful!');
-          console.log('User registered:', response);
+          this.toastr.success('Registration successful!');
 
           this.router.navigate(['/home']);
         },
         (error) => {
-          console.error('Registration failed:', error);
-          alert('Registration failed. Please try again.');
+          if (error.status === 409) {
+            this.toastr.error('An account with that email already exists.');
+          } else {
+            this.toastr.error('Registration failed. Please try again.');
+          }
         }
       );
     }else{
-      alert('Please fill in all required fields');
+      this.toastr.error('Please fill in all required fields');
     }
   }
 }

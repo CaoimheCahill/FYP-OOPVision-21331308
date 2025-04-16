@@ -9,6 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {TokenPayload, UserService} from '../service/user.service';
 import {jwtDecode} from 'jwt-decode';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit{
   readonly email = new FormControl('', [Validators.required, Validators.email]);
   loginData = { email: '', password: '' };
   errorMessage: string | null = null;
-  constructor(private titleService: Title, private router: Router, private userService: UserService) {}
+  constructor(private titleService: Title, private router: Router, private userService: UserService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Login');
@@ -57,12 +58,12 @@ export class LoginComponent implements OnInit{
           }
         },
         (error) => {
-          this.errorMessage = 'Invalid email or password';
           console.error('Login error:', error);
+          this.toastr.error('Invalid email or password')
         }
       );
     } else {
-      alert('Please fill in all required fields');
+      this.toastr.error('Please fill in all required fields');
     }
   }
 
