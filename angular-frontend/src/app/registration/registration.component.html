@@ -72,11 +72,24 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Password (8 characters or more)</mat-label>
+        <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" placeholder="Password" />
-        <mat-error *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
-          Password must be at least 8 characters long.
+        <mat-error *ngIf="registrationForm.get('password')?.hasError('required') && registrationForm.get('password')?.touched">
+          Password is required.
         </mat-error>
+
+        <mat-card class="error-card" *ngIf="registrationForm.get('password')?.hasError('pattern')">
+          <mat-card-content>
+          Password must be at least 12 characters and include
+          <ul>
+            <li>one uppercase letter</li>
+            <li>one lowercase letter</li>
+            <li>one number</li>
+            <li>one special character (&#64;$!%*?&)</li>
+          </ul>
+          </mat-card-content>
+        </mat-card>
+
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">

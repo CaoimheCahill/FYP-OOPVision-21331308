@@ -9,6 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
 import {UserService} from '../service/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-registration',
@@ -22,6 +23,7 @@ import {ToastrService} from 'ngx-toastr';
     RouterLink,
     MatToolbarModule,
     NgOptimizedImage,
+    MatCardModule,
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
@@ -30,12 +32,13 @@ export class RegistrationComponent implements OnInit{
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService, private toastr: ToastrService) {
+    const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
     this.registrationForm = this.fb.group(
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.pattern(PASSWORD_REGEX)]],
         confirmPassword: ['', Validators.required]
       },
       {

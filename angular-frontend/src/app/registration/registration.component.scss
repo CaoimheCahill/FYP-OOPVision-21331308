@@ -135,6 +135,16 @@ $text-color: #333;
         }
       }
     }
+
+    .error-card {
+      background: #fff;
+      border-left: 4px solid #f44336;
+      margin-top: 5px;
+    }
+    .error-card mat-card-content {
+      padding: 8px;
+      font-size: small;
+    }
   }
 }
 
