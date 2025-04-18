@@ -72,7 +72,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let topic of progressData">
-          <td>Topic {{ topic.topicId }}</td>
+          <td>{{ topic.topicTitle }}</td>
           <td>{{ topic.quizScore || 'Not Completed' }}</td>
         </tr>
         </tbody>
