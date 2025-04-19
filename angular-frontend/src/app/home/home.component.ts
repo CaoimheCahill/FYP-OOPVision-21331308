@@ -6,16 +6,20 @@ import {Router, RouterLink} from "@angular/router";
 import {FormBuilder} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import {UserService} from '../service/user.service';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-    imports: [
-        MatButtonModule,
-        MatToolbarModule,
-        NgOptimizedImage,
-        RouterLink
-    ],
+  imports: [
+    MatButtonModule,
+    MatToolbarModule,
+    NgOptimizedImage,
+    RouterLink,
+    HeaderComponent,
+    FooterComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

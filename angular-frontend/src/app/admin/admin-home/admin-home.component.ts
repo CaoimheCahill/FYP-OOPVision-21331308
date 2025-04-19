@@ -5,16 +5,18 @@ import {NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {User, UserService} from '../../service/user.service';
 import {Title} from '@angular/platform-browser';
+import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-home',
   standalone: true,
-  imports: [
-    MatButtonModule,
-    MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink
-  ],
+    imports: [
+        MatButtonModule,
+        MatToolbarModule,
+        NgOptimizedImage,
+        RouterLink,
+        HeaderComponent
+    ],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
 })

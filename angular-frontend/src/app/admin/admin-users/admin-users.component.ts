@@ -6,18 +6,20 @@ import {RouterLink} from '@angular/router';
 import {User, UserService} from '../../service/user.service';
 import {Title} from '@angular/platform-browser';
 import {MatTableModule} from '@angular/material/table';
+import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-users',
   standalone: true,
-  imports: [
-    MatButtonModule,
-    MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink,
-    MatTableModule,
-    NgForOf
-  ],
+    imports: [
+        MatButtonModule,
+        MatToolbarModule,
+        NgOptimizedImage,
+        RouterLink,
+        MatTableModule,
+        NgForOf,
+        HeaderComponent
+    ],
   templateUrl: './admin-users.component.html',
   styleUrl: './admin-users.component.scss'
 })

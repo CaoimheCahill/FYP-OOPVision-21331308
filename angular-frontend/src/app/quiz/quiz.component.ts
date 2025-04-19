@@ -8,6 +8,8 @@ import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
 import {FormsModule} from '@angular/forms';
 import {catchError, switchMap} from 'rxjs';
 import {ProgressService} from '../service/progress.service';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-quiz',
@@ -20,7 +22,9 @@ import {ProgressService} from '../service/progress.service';
     FormsModule,
     NgForOf,
     NgIf,
-    NgClass
+    NgClass,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss'

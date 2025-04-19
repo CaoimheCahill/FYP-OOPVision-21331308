@@ -10,6 +10,8 @@ import {Title} from '@angular/platform-browser';
 import {UserService} from '../service/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatCardModule} from '@angular/material/card';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-registration',
@@ -22,8 +24,9 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     RouterLink,
     MatToolbarModule,
-    NgOptimizedImage,
     MatCardModule,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'

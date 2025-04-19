@@ -5,6 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgForOf, NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-topics',
@@ -14,7 +16,9 @@ import {RouterLink} from '@angular/router';
     MatToolbarModule,
     NgOptimizedImage,
     RouterLink,
-    NgForOf
+    NgForOf,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './topics.component.html',
   styleUrl: './topics.component.scss'

@@ -7,6 +7,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
 import {VisualExample, VisualExampleService} from '../service/visual-example.service';
 import { MarkdownModule } from 'ngx-markdown';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-topic-content',
@@ -19,7 +21,9 @@ import { MarkdownModule } from 'ngx-markdown';
     NgOptimizedImage,
     RouterLink,
     NgForOf,
-    MarkdownModule
+    MarkdownModule,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './topic-content.component.html',
   styleUrl: './topic-content.component.scss'

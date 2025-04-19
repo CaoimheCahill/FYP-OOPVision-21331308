@@ -5,17 +5,19 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {Title} from '@angular/platform-browser';
+import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-topics',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatToolbarModule,
+        NgOptimizedImage,
+        RouterLink,
+        HeaderComponent
+    ],
   templateUrl: './admin-topics.component.html',
   styleUrl: './admin-topics.component.scss'
 })

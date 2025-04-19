@@ -7,17 +7,21 @@ import {Title} from '@angular/platform-browser';
 import {ImageService} from '../service/image.service';
 import { Image} from '../service/image.service';
 import {ProgressService} from '../service/progress.service';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-visual-example',
   standalone: true,
-    imports: [
-        MatButtonModule,
-        MatToolbarModule,
-        NgOptimizedImage,
-        RouterLink,
-        CommonModule
-    ],
+  imports: [
+    MatButtonModule,
+    MatToolbarModule,
+    NgOptimizedImage,
+    RouterLink,
+    CommonModule,
+    HeaderComponent,
+    FooterComponent
+  ],
   templateUrl: './visual-example.component.html',
   styleUrl: './visual-example.component.scss'
 })

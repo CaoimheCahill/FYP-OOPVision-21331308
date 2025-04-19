@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {TokenPayload, UserService} from '../service/user.service';
 import {jwtDecode} from 'jwt-decode';
 import {ToastrService} from 'ngx-toastr';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,9 @@ import {ToastrService} from 'ngx-toastr';
     MatToolbarModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

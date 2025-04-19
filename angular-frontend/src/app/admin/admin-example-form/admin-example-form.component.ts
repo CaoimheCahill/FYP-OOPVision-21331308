@@ -6,6 +6,7 @@ import {VisualExampleService} from '../../service/visual-example.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {HeaderComponent} from '../../shared/header/header.component';
 
 @Component({
   selector: 'app-admin-example-form',
@@ -13,11 +14,10 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
   imports: [
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink,
     ReactiveFormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    HeaderComponent
   ],
   templateUrl: './admin-example-form.component.html',
   styleUrl: './admin-example-form.component.scss'

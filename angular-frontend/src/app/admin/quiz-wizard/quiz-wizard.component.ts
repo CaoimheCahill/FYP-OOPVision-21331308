@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {Title} from '@angular/platform-browser';
+import {HeaderComponent} from '../../shared/header/header.component';
 
 @Component({
   selector: 'app-quiz-wizard',
@@ -27,7 +28,8 @@ import {Title} from '@angular/platform-browser';
     MatButtonModule,
     MatIconModule,
     NgOptimizedImage,
-    RouterLink
+    RouterLink,
+    HeaderComponent
   ],
   templateUrl: './quiz-wizard.component.html',
   styleUrls: ['./quiz-wizard.component.scss']

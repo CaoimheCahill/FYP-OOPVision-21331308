@@ -5,11 +5,12 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {Title} from '@angular/platform-browser';
+import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-quizzes',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, RouterLink, NgOptimizedImage],
+    imports: [CommonModule, MatToolbarModule, MatButtonModule, RouterLink, NgOptimizedImage, HeaderComponent],
   templateUrl: './admin-quizzes.component.html',
   styleUrl: './admin-quizzes.component.scss'
 })

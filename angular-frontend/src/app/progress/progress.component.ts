@@ -8,6 +8,8 @@ import {ProgressService} from '../service/progress.service';
 import {TopicService} from '../service/topic.service';
 import {UserService} from '../service/user.service';
 import {forkJoin, map} from 'rxjs';
+import {HeaderComponent} from '../shared/header/header.component';
+import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-progress',
@@ -16,9 +18,9 @@ import {forkJoin, map} from 'rxjs';
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink,
-    DecimalPipe
+    HeaderComponent,
+    DecimalPipe,
+    FooterComponent
   ],
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss'
