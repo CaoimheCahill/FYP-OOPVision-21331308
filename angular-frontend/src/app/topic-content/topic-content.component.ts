@@ -7,6 +7,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
 import {VisualExample, VisualExampleService} from '../service/visual-example.service';
 import {MarkdownModule} from 'ngx-markdown';
+import {Quiz, QuizService} from '../service/quiz.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-topic-content',
@@ -19,6 +21,7 @@ import {MarkdownModule} from 'ngx-markdown';
     RouterLink,
     NgForOf,
     MarkdownModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './topic-content.component.html',
   styleUrl: './topic-content.component.scss'
@@ -26,11 +29,13 @@ import {MarkdownModule} from 'ngx-markdown';
 export class TopicContentComponent implements OnInit {
   topic: Topic | undefined;
   visualExamples: VisualExample[] = [];
+  quizzes: Quiz[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private topicService: TopicService,
     private visualExampleService: VisualExampleService,
+    private quizService: QuizService,
     private titleService: Title
   ) {
   }
@@ -48,6 +53,11 @@ export class TopicContentComponent implements OnInit {
               next: (examples) => this.visualExamples = examples,
               error: (err) => console.error('Error fetching visual examples:', err)
             });
+
+          this.quizService.getQuizByTopicId(this.topic.topicId).subscribe({
+            next: (quizzes)=> this.quizzes = quizzes,
+            error: (err) => console.error('Error fetching quizzes:', err)
+          })
         }
       });
     }

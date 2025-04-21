@@ -8,22 +8,35 @@
     <markdown [data]="topic.topicDescription"></markdown>
 
     <div class="buttons">
-      <!-- If there are visual examples, show a button for each one -->
       <ng-container *ngIf="visualExamples.length > 0; else noExample">
         <button *ngFor="let example of visualExamples"
                 class="btn"
                 [routerLink]="['/topic', topic.topicId, 'visualExample', example.visualExampleId]">
-          {{ example.name }}
+          {{ example.name }} Example
         </button>
       </ng-container>
       <ng-template #noExample>
-        <p>No visual examples available for this topic.</p>
+        <button class="btn btn--disabled" disabled>
+          No Visual Examples Available
+        </button>
       </ng-template>
 
-      <button class="btn" [routerLink]="['/topic', topic.topicId, 'quiz']">Quiz</button>
+      <ng-container *ngIf="quizzes.length > 0; else noQuiz">
+        <button *ngFor="let quiz of quizzes"
+                class="btn"
+                [routerLink]="['/topic', topic.topicId, 'quiz']">
+          {{ quiz.title }} Quiz
+        </button>
+      </ng-container>
+      <ng-template #noQuiz>
+        <button class="btn btn--disabled" disabled>
+          No Quizzes Available
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>
-<div *ngIf="!topic">
-  <p>Loading...</p>
+<div *ngIf="!topic" class="loading-container">
+  <mat-spinner diameter="50"></mat-spinner>
+  <p class="loading-text">Loading content, please wait…</p>
 </div>

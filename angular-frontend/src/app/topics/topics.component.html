@@ -6,3 +6,8 @@
     </button>
   </div>
 </div>
+<div *ngIf="!topics" class="loading-container">
+  <mat-spinner diameter="50"></mat-spinner>
+  <p class="loading-text">Loading content, please wait…</p>
+</div>
+

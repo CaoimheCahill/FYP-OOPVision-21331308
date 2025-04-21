@@ -3,18 +3,21 @@ import {Topic, TopicService} from '../service/topic.service';
 import {Title} from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-topics',
   standalone: true,
-  imports: [
-    MatButtonModule,
-    MatToolbarModule,
-    RouterLink,
-    NgForOf,
-  ],
+    imports: [
+        MatButtonModule,
+        MatToolbarModule,
+        RouterLink,
+        NgForOf,
+        MatProgressSpinnerModule,
+        NgIf,
+    ],
   templateUrl: './topics.component.html',
   styleUrl: './topics.component.scss'
 })
