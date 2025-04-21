@@ -36,7 +36,7 @@ This project aims to simplify the learning process of OOP concepts for beginners
 - **Database**: MySQL
 - **Hosting**: Azure
 - **Version Control**: GitHub
-- **Tools for UI Design**: Lucid and Excalidraw
+- **Tools for UI Design**: Lucid, Draw.io and Excalidraw
 
 ---
 
@@ -68,9 +68,16 @@ This application bridges the gap by offering both visual and interactive learnin
 
 ---
 
+---
+
+## **Deployed Version**
+
+- Link to Deployed Application:
+- [OOPVision](https://orange-water-01553bd1e.5.azurestaticapps.net/)
+
 ## **Contact**
 
-- **Project Lead**: Caoimhe Cahill  
+- **Name**: Caoimhe Cahill  
 - **Email**: 213331308@studentmail.ul.ie  
 
 ---
