@@ -18,9 +18,7 @@ import {FooterComponent} from '../shared/footer/footer.component';
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
-    HeaderComponent,
     DecimalPipe,
-    FooterComponent
   ],
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss'
@@ -49,7 +47,7 @@ export class ProgressComponent implements OnInit{
 
         const enriched = (progressData.progress || []).map((item: { topicId: number; }) => ({
           ...item,
-          topicName: nameById.get(item.topicId) ?? `Topic ${item.topicId}`
+          topicTitle: nameById.get(item.topicId) ?? `Topic ${item.topicId}`
         }));
         this.progressData = enriched;
         this.completionPercentage = progressData.completionPercentage;
