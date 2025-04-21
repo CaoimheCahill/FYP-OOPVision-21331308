@@ -2,7 +2,8 @@ import {Component, Input} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgOptimizedImage} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,16 @@ import {RouterLink} from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  @Input() mode: string = 'user';
+  @Input() mode: string = 'PUBLIC';
+
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/login']);
+  }
 
 }

@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<body>
-<app-header mode="admin"></app-header>
-
 <h2 *ngIf="isEditMode">Edit Topic</h2>
 <h2 *ngIf="!isEditMode">Create New Topic</h2>
 
@@ -16,11 +10,3 @@
 
   <button type="submit">{{ isEditMode ? 'Update' : 'Create' }}</button>
 </form>
-
-
-
-<footer class="footer">
-  © 2024 Copyright OOP Vision. All Rights Reserved
-</footer>
-</body>
-</html>
