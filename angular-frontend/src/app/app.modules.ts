@@ -9,21 +9,12 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import {routes} from './app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
-      RouterModule.forRoot([
-        {path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)},
-        {path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)},
-        {
-          path: 'registration',
-          loadComponent: () => import('./registration/registration.component').then(m => m.RegistrationComponent)
-        },
-        {path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)},
-        {path: 'topics', loadComponent: () => import('./topics/topics.component').then(m => m.TopicsComponent)},
-        {path: 'progress', loadComponent: () => import('./progress/progress.component').then(m => m.ProgressComponent)},
-      ]),
+      RouterModule.forRoot(routes),
       BrowserAnimationsModule,
       FormsModule,
       MatInputModule,
