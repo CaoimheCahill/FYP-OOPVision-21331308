@@ -27,7 +27,6 @@ public class ProgressController {
     @Autowired
     private UserRepository userRepository;
 
-    // Endpoint to get user progress by userId
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUserProgress(@PathVariable Integer userId) {
         List<Progress> progressList = progressService.getUserProgress(userId);

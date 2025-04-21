@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -32,7 +31,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         if (userService.emailExists(user.getEmail())) {
-            // Return 409 Conflict with a message
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of("message", "An account with that email already exists"));
         }

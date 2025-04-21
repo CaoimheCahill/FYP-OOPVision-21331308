@@ -32,9 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             String token = header.substring(7);
             try {
                 Claims claims = jwtUtil.validateToken(token);
-                // Extract the role from the claims; assume it's stored as "role"
                 String role = claims.get("role", String.class);
-                // Create a SimpleGrantedAuthority; Spring Security requires roles to be prefixed with "ROLE_"
                 List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
 
                 UsernamePasswordAuthenticationToken auth =

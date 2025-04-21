@@ -1,17 +1,14 @@
 package com.example.springbootbackend.service;
 
 import com.example.springbootbackend.model.Image;
-import com.example.springbootbackend.model.Topic;
 import com.example.springbootbackend.model.VisualExample;
 import com.example.springbootbackend.repository.ImageRepository;
-import com.example.springbootbackend.repository.TopicRepository;
 import com.example.springbootbackend.repository.VisualExampleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ImageService {
