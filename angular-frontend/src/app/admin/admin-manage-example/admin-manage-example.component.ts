@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {VisualExample, VisualExampleService} from '../../service/visual-example.service';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {CommonModule, NgForOf, NgOptimizedImage} from '@angular/common';
+import {CommonModule, NgForOf} from '@angular/common';
 import {Title} from '@angular/platform-browser';
 
 @Component({
@@ -13,14 +13,12 @@ import {Title} from '@angular/platform-browser';
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
-    NgForOf,
-    NgOptimizedImage,
-    RouterLink
+    NgForOf
   ],
   templateUrl: './admin-manage-example.component.html',
   styleUrl: './admin-manage-example.component.scss'
 })
-export class AdminManageExampleComponent implements OnInit{
+export class AdminManageExampleComponent implements OnInit {
   topicId!: number;
   visualExamples: VisualExample[] = [];
 
@@ -29,7 +27,8 @@ export class AdminManageExampleComponent implements OnInit{
     private router: Router,
     private visualExampleService: VisualExampleService,
     private titleService: Title
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Examples');

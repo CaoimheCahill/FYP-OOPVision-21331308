@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -55,7 +54,7 @@ public class AdminController {
     @PutMapping("/users/{userId}/demote")
     public ResponseEntity<String> demoteUser(@PathVariable Long userId) {
         userService.demoteUser(userId);
-            return ResponseEntity.ok("Admin demoted to User.");
+        return ResponseEntity.ok("Admin demoted to User.");
     }
 
     @DeleteMapping("/users/{userId}")
@@ -218,7 +217,6 @@ public class AdminController {
         Image imageDetails = new Image();
         imageDetails.setImageSide(imageSide);
         imageDetails.setOrderIndex(orderIndex != null ? orderIndex : 0);
-        System.out.println(imageDetails);
         Image created = imageService.addImage(visualExampleId, file, imageDetails);
         return ResponseEntity.ok(created);
     }

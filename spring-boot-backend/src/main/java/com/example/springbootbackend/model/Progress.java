@@ -1,7 +1,6 @@
 package com.example.springbootbackend.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.time.LocalDateTime;
 
@@ -24,10 +23,8 @@ public class Progress {
 
     private String quizScore;
 
-    // This will be marked as 'true' when both 'viewedExample' and 'completedQuiz' are true
     private boolean completed;
 
-    // Getters and setters
 
     public int getProgressId() {
         return progressId;
@@ -94,7 +91,6 @@ public class Progress {
     }
 
     public boolean isCompleted() {
-        // Completed will be 'true' when both the quiz and example have been completed
         return viewedExample && completedQuiz;
     }
 

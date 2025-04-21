@@ -4,71 +4,12 @@ $secondary-color: #B6E3FF;
 $text-color: #333;
 $button-color: #757575;
 
-.body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-// Toolbar Styles
-.custom-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 2rem;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  .toolbar-logo {
-    height: 60px;
-    width: auto;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
-  }
-
-  .nav-links li {
-    display: flex;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: #757575;
-    padding: 0.5rem 1rem;
-    font-family: 'Righteous', sans-serif;
-  }
-
-  .logout-btn {
-    border: 1px solid $primary-color;
-    color: $primary-color;
-    background-color: transparent;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-family: 'Righteous', sans-serif;
-
-    &:hover {
-      background-color: $primary-color;
-      color: #fff;
-    }
-  }
-
-}
-
-/* Style for the heading */
 h2 {
   text-align: center;
   color: $button-color;
   margin: 1.5rem;
 }
 
-/* Form container styling */
 form {
   max-width: 500px;
   margin: 0 auto 2rem auto;
@@ -78,7 +19,6 @@ form {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  /* Style for labels */
   label {
     display: block;
     font-weight: bold;
@@ -87,7 +27,6 @@ form {
     color: #333;
   }
 
-  /* Style for text input and textarea */
   input[type="text"],
   textarea {
     width: 100%;
@@ -104,7 +43,6 @@ form {
     border-color: $primary-color;
   }
 
-  /* Style for the submit button */
   button[type="submit"] {
     display: inline-block;
     margin-top: 1.5rem;
@@ -121,20 +59,4 @@ form {
   button[type="submit"]:hover {
     background-color: #FFDD8B;
   }
-}
-
-
-
-
-// Footer Styles
-.footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: $secondary-color;
-  color: $text-color;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }

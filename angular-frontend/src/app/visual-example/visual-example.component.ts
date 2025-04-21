@@ -1,27 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {CommonModule} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {ImageService} from '../service/image.service';
-import { Image} from '../service/image.service';
+import {Image} from '../service/image.service';
 import {ProgressService} from '../service/progress.service';
 
 @Component({
   selector: 'app-visual-example',
   standalone: true,
-    imports: [
-        MatButtonModule,
-        MatToolbarModule,
-        NgOptimizedImage,
-        RouterLink,
-        CommonModule
-    ],
+  imports: [
+    MatButtonModule,
+    MatToolbarModule,
+    RouterLink,
+    CommonModule,
+  ],
   templateUrl: './visual-example.component.html',
   styleUrl: './visual-example.component.scss'
 })
-export class VisualExampleComponent implements OnInit{
+export class VisualExampleComponent implements OnInit {
   topicId!: number;
   visualExampleId!: number;
   images: Image[] = [];
@@ -30,7 +29,7 @@ export class VisualExampleComponent implements OnInit{
   currentIndex = 0;
 
 
-  constructor(private titleService: Title, private route:ActivatedRoute, private imageService: ImageService, private router:Router, private progressService: ProgressService) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private imageService: ImageService, private router: Router, private progressService: ProgressService) {
   }
 
   ngOnInit(): void {

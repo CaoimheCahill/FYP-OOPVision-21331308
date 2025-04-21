@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -31,14 +31,12 @@ export class VisualExampleService {
     return this.http.post<VisualExample>(`${this.apiUrl}/topics/${topicId}`, example);
   }
 
-  // Update an existing visual example
   updateVisualExample(id: number, example: Partial<VisualExample>): Observable<VisualExample> {
     return this.http.put<VisualExample>(`${this.apiUrl}/${id}`, example);
   }
 
-  // Delete a visual example
   deleteVisualExample(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' as 'json' });
+    return this.http.delete(`${this.apiUrl}/${id}`, {responseType: 'text' as 'json'});
   }
 
 }

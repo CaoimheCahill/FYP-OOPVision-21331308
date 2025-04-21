@@ -20,6 +20,7 @@ public class Quizzes {
     public void setQuizId(Integer quizId) {
         this.quizId = quizId;
     }
+
     public int getTopicId() {
         return topicId;
     }

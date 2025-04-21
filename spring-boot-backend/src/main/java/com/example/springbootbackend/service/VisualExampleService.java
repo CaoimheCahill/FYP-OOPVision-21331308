@@ -6,6 +6,7 @@ import com.example.springbootbackend.repository.ImageRepository;
 import com.example.springbootbackend.repository.VisualExampleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

@@ -10,15 +10,14 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    // Ideally, load this from configuration
-    private final String SECRET = "YourSuperSecretKeyThatShouldBeLongEnoughForHS256";
-    private final long EXPIRATION_TIME = 86400000; // 1 day in milliseconds
 
     private Key getSigningKey() {
+        String SECRET = "YourSuperSecretKeyThatShouldBeLongEnoughForHS256";
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
     public String generateToken(User user) {
+        long EXPIRATION_TIME = 86400000;
         return Jwts.builder()
                 .setSubject(user.getEmail())
                 .claim("userId", user.getUserId())

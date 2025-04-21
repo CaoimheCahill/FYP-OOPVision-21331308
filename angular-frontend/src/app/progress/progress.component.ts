@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {CommonModule, DecimalPipe, NgOptimizedImage} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {CommonModule, DecimalPipe} from "@angular/common";
 import {Title} from '@angular/platform-browser';
 import {ProgressService} from '../service/progress.service';
 import {TopicService} from '../service/topic.service';
 import {UserService} from '../service/user.service';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-progress',
@@ -15,39 +15,44 @@ import {UserService} from '../service/user.service';
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink,
-    DecimalPipe
+    DecimalPipe,
   ],
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss'
 })
-export class ProgressComponent implements OnInit{
+export class ProgressComponent implements OnInit {
 
-  progressData: any[] = [];   // Store the progress data
   completionPercentage: number = 0;
   totalTopics: number = 0;
   userId: number | null | undefined;
   totalTopicsCompleted: number = 0;
 
-  constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService, private userService: UserService) {}
+  constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService, private userService: UserService) {
+  }
+
+  progressData: Array<{ topicId: number; quizScore?: number; topicTitle?: string; completed: boolean }> = [];
 
   ngOnInit(): void {
     this.userId = this.userService.getUserIdFromToken();
     this.titleService.setTitle('Progress');
 
-    // Fetch the progress data
-    this.progressService.getUserProgress(this.userId).subscribe((data) => {
-      this.progressData = data.progress || [];
-      this.completionPercentage = data.completionPercentage;
-      this.totalTopicsCompleted = this.progressData.filter(item => item.completed).length;
-      console.log(this.progressData)
-    });
+    forkJoin({
+      progressData: this.progressService.getUserProgress(this.userId),
+      allTopics: this.topicService.getTopics()
+    })
+      .subscribe(({progressData, allTopics}) => {
+        const nameById = new Map(allTopics.map(t => [t.topicId, t.topicTitle]));
 
-    // Fetch the total number of topics
-    this.topicService.getTotalTopics().subscribe((totalTopics) => {
-      this.totalTopics = totalTopics;  // Set the total topics value
-    });
+        const enriched = (progressData.progress || []).map((item: { topicId: number; }) => ({
+          ...item,
+          topicTitle: nameById.get(item.topicId) ?? `Topic ${item.topicId}`
+        }));
+        this.progressData = enriched;
+        this.completionPercentage = progressData.completionPercentage;
+        this.totalTopicsCompleted = enriched.filter((i: { completed: any; }) => i.completed).length;
+      });
+
+    this.topicService.getTotalTopics().subscribe(total => this.totalTopics = total);
   }
 
   get circumference() {
@@ -56,7 +61,6 @@ export class ProgressComponent implements OnInit{
   }
 
   get offset() {
-    console.log(this.completionPercentage);
     return this.circumference * (1 - this.completionPercentage / 100);
   }
 

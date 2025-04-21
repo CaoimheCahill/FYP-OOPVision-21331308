@@ -1,0 +1,28 @@
+<mat-toolbar class="custom-toolbar">
+  <div class="toolbar-left">
+    <img ngSrc="assets/Logo.png" alt="Logo" class="toolbar-logo" height="365" width="928"/>
+  </div>
+
+  <div class="toolbar-right">
+    <nav>
+      <ul class="nav-links" *ngIf="mode==='USER'">
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/topics">Topics</a></li>
+        <li><a routerLink="/progress">Progress</a></li>
+        <button mat-stroked-button class="toolbar-btn" (click)="logout()">Log Out</button>
+      </ul>
+      <ul class="nav-links" *ngIf="mode==='PUBLIC'">
+        <button mat-stroked-button class="toolbar-btn" routerLink="/registration">Sign Up</button>
+        <button mat-stroked-button class="toolbar-btn" routerLink="/login">Log In</button>
+      </ul>
+      <ul class="nav-links" *ngIf="mode==='ADMIN'">
+        <li><a routerLink="/admin/home">Home</a></li>
+        <li><a routerLink="/admin/users">Users</a></li>
+        <li><a routerLink="/admin/topics">Topics</a></li>
+        <li><a routerLink="/admin/quizzes">Quizzes</a></li>
+        <li><a routerLink="/admin/visualExamples">Visual Examples</a></li>
+        <button mat-stroked-button class="toolbar-btn" (click)="logout()">Log Out</button>
+      </ul>
+    </nav>
+  </div>
+</mat-toolbar>

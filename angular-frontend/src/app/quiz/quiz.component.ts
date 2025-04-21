@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
@@ -15,7 +15,6 @@ import {ProgressService} from '../service/progress.service';
   imports: [
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
     RouterLink,
     FormsModule,
     NgForOf,
@@ -36,7 +35,7 @@ export class QuizComponent implements OnInit {
   showResults: boolean = false;
   finalResult: string = '';
 
-  constructor(private titleService: Title, private quizService: QuizService, private route:ActivatedRoute, private router:Router, private progressService: ProgressService) {
+  constructor(private titleService: Title, private quizService: QuizService, private route: ActivatedRoute, private router: Router, private progressService: ProgressService) {
   }
 
   ngOnInit(): void {
@@ -113,8 +112,6 @@ export class QuizComponent implements OnInit {
       this.finalResult = `${this.score}/${this.questions.length}`;
       this.progressService.markQuizFinished(this.topicId, this.finalResult).subscribe({
         next: () => {
-          console.log(this.finalResult);
-          // Optionally, do something on success. For now, we simply show the results.
           this.showResults = true;
         },
         error: (err: any) => {

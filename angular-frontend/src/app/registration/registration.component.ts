@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {NgIf, NgOptimizedImage} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
 import {UserService} from '../service/user.service';
+import {ToastrService} from 'ngx-toastr';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-registration',
@@ -20,21 +22,22 @@ import {UserService} from '../service/user.service';
     MatButtonModule,
     RouterLink,
     MatToolbarModule,
-    NgOptimizedImage,
+    MatCardModule,
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
-export class RegistrationComponent implements OnInit{
+export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService, private toastr: ToastrService) {
+    const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
     this.registrationForm = this.fb.group(
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.pattern(PASSWORD_REGEX)]],
         confirmPassword: ['', Validators.required]
       },
       {
@@ -50,7 +53,7 @@ export class RegistrationComponent implements OnInit{
   passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { passwordMismatch: true };
+    return password === confirmPassword ? null : {passwordMismatch: true};
   }
 
   onSubmit(): void {
@@ -64,18 +67,20 @@ export class RegistrationComponent implements OnInit{
             // Store the token in localStorage or sessionStorage
             localStorage.setItem('token', response.token);
           }
-          alert('Registration successful!');
-          console.log('User registered:', response);
+          this.toastr.success('Registration successful!');
 
           this.router.navigate(['/home']);
         },
         (error) => {
-          console.error('Registration failed:', error);
-          alert('Registration failed. Please try again.');
+          if (error.status === 409) {
+            this.toastr.error('An account with that email already exists.');
+          } else {
+            this.toastr.error('Registration failed. Please try again.');
+          }
         }
       );
-    }else{
-      alert('Please fill in all required fields');
+    } else {
+      this.toastr.error('Please fill in all required fields');
     }
   }
 }
