@@ -1,29 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TopicService} from '../../service/topic.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {Title} from '@angular/platform-browser';
-import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-topics-form',
   standalone: true,
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        MatToolbarModule,
-        NgOptimizedImage,
-        RouterLink,
-        ReactiveFormsModule,
-        HeaderComponent
-    ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './topics-form.component.html',
   styleUrl: './topics-form.component.scss'
 })
-export class TopicsFormComponent implements OnInit{
+export class TopicsFormComponent implements OnInit {
   topicForm!: FormGroup;
   isEditMode = false;
   topicId?: number;
@@ -34,7 +30,8 @@ export class TopicsFormComponent implements OnInit{
     private router: Router,
     private topicService: TopicService,
     private titleService: Title
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Topics');

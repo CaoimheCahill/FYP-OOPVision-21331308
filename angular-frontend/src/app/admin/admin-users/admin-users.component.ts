@@ -1,31 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {NgForOf} from '@angular/common';
 import {User, UserService} from '../../service/user.service';
 import {Title} from '@angular/platform-browser';
 import {MatTableModule} from '@angular/material/table';
-import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-users',
   standalone: true,
-    imports: [
-        MatButtonModule,
-        MatToolbarModule,
-        NgOptimizedImage,
-        RouterLink,
-        MatTableModule,
-        NgForOf,
-        HeaderComponent
-    ],
+  imports: [
+    MatButtonModule,
+    MatToolbarModule,
+    MatTableModule,
+    NgForOf,
+  ],
   templateUrl: './admin-users.component.html',
   styleUrl: './admin-users.component.scss'
 })
-export class AdminUsersComponent implements OnInit{
+export class AdminUsersComponent implements OnInit {
 
-  constructor(private userService: UserService, private titleService: Title) { }
+  constructor(private userService: UserService, private titleService: Title) {
+  }
 
   displayedColumns: string[] = ['email', 'role', 'actions'];
   users: any[] = [];

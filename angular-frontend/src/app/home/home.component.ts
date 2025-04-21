@@ -1,13 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {NgOptimizedImage} from "@angular/common";
-import {Router, RouterLink} from "@angular/router";
-import {FormBuilder} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
-import {UserService} from '../service/user.service';
-import {HeaderComponent} from '../shared/header/header.component';
-import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -15,17 +9,14 @@ import {FooterComponent} from '../shared/footer/footer.component';
   imports: [
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
-    RouterLink,
-    HeaderComponent,
-    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-  constructor(private titleService: Title){}
+  constructor(private titleService: Title) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Home');

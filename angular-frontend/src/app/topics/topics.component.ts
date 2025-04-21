@@ -3,10 +3,8 @@ import {Topic, TopicService} from '../service/topic.service';
 import {Title} from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgForOf} from '@angular/common';
 import {RouterLink} from '@angular/router';
-import {HeaderComponent} from '../shared/header/header.component';
-import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-topics',
@@ -14,25 +12,22 @@ import {FooterComponent} from '../shared/footer/footer.component';
   imports: [
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
     RouterLink,
     NgForOf,
-    HeaderComponent,
-    FooterComponent
   ],
   templateUrl: './topics.component.html',
   styleUrl: './topics.component.scss'
 })
-export class TopicsComponent implements OnInit{
+export class TopicsComponent implements OnInit {
   topics: Topic[] = [];
 
-  constructor(private titleService: Title, private topicService: TopicService) {}
+  constructor(private titleService: Title, private topicService: TopicService) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Topics');
     this.topicService.getTopics().subscribe((data: Topic[]) => {
       this.topics = data;
-      console.log(this.topics);
     });
   }
 }

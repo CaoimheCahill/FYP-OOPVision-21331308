@@ -1,32 +1,29 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {User, UserService} from '../../service/user.service';
 import {Title} from '@angular/platform-browser';
-import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-home',
   standalone: true,
-    imports: [
-        MatButtonModule,
-        MatToolbarModule,
-        NgOptimizedImage,
-        RouterLink,
-        HeaderComponent
-    ],
+  imports: [
+    MatButtonModule,
+    MatToolbarModule,
+    RouterLink,
+  ],
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
 })
-export class AdminHomeComponent implements OnInit{
+export class AdminHomeComponent implements OnInit {
 
   users: User[] = [];
   adminCount = 0;
   regularCount = 0;
 
-  constructor(private userService: UserService, private titleService: Title) { }
+  constructor(private userService: UserService, private titleService: Title) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Admin Home');

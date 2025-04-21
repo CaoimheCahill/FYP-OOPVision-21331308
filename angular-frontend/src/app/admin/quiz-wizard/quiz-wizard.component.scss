@@ -41,17 +41,3 @@ mat-horizontal-stepper {
   display: flex;
   justify-content: space-between;
 }
-
-
-// Footer Styles
-.footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: $secondary-color;
-  color: $text-color;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-  bottom: 0;
-  position: fixed;
-  width: 100%;
-}

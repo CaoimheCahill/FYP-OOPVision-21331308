@@ -5,11 +5,11 @@
       <ng-template matStepLabel>Quiz Details</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Quiz Title</mat-label>
-        <input matInput formControlName="title" />
+        <input matInput formControlName="title"/>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Topic ID</mat-label>
-        <input matInput type="number" formControlName="topicId" />
+        <input matInput type="number" formControlName="topicId"/>
       </mat-form-field>
       <div>
         <button class="button" matStepperNext [disabled]="quizDetailsForm.invalid">
@@ -32,7 +32,7 @@
           <h3>Question {{ i + 1 }}</h3>
           <mat-form-field appearance="fill">
             <mat-label>Question Text</mat-label>
-            <input matInput formControlName="questionText" />
+            <input matInput formControlName="questionText"/>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Question Type</mat-label>
@@ -48,7 +48,7 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Correct Answer</mat-label>
-            <input matInput formControlName="correctAnswer" />
+            <input matInput formControlName="correctAnswer"/>
           </mat-form-field>
 
           <!-- Options for Multiple Choice -->
@@ -62,7 +62,7 @@
             >
               <mat-form-field appearance="fill" class="option-field">
                 <mat-label>Option {{ j + 1 }}</mat-label>
-                <input matInput [formControlName]="j" />
+                <input matInput [formControlName]="j"/>
               </mat-form-field>
               <button
                 type="button"
@@ -109,7 +109,7 @@
       <div class="step-buttons">
         <button class="button" matStepperPrevious>Back</button>
         <button
-          class ="button"
+          class="button"
           (click)="submitWizard()"
         >
           Finish

@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { Quiz, QuizQuestion, QuizService } from '../../service/quiz.service';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import {CommonModule, NgForOf, NgOptimizedImage} from '@angular/common';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatInputModule } from '@angular/material/input';
-import { MatOptionModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+import {Quiz, QuizQuestion, QuizService} from '../../service/quiz.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {CommonModule, NgForOf} from '@angular/common';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material/input';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {Title} from '@angular/platform-browser';
-import {HeaderComponent} from '../../shared/header/header.component';
 
 @Component({
   selector: 'app-quiz-wizard',
@@ -27,9 +26,6 @@ import {HeaderComponent} from '../../shared/header/header.component';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    NgOptimizedImage,
-    RouterLink,
-    HeaderComponent
   ],
   templateUrl: './quiz-wizard.component.html',
   styleUrls: ['./quiz-wizard.component.scss']
@@ -42,7 +38,7 @@ export class QuizWizardComponent implements OnInit {
 
   isEditMode = false;
   quizId?: number;
-  topicId?: number; // Used in creation mode
+  topicId?: number;
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +46,8 @@ export class QuizWizardComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private titleService: Title
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Quizzes');
@@ -74,7 +71,7 @@ export class QuizWizardComponent implements OnInit {
           const tId = qParams.get('topicId');
           if (tId) {
             this.topicId = +tId;
-            this.quizDetailsForm.patchValue({ topicId: this.topicId });
+            this.quizDetailsForm.patchValue({topicId: this.topicId});
           }
         });
       }
@@ -240,7 +237,6 @@ export class QuizWizardComponent implements OnInit {
       });
     }
   }
-
 
 
   // Save (create or update) each question for the quiz

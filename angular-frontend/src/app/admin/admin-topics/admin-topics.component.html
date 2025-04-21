@@ -1,25 +1,25 @@
 <div class="admin-topics">
-<h2>Manage Topics</h2>
+  <h2>Manage Topics</h2>
 
-<button (click)="createTopic()">Create New Topic</button>
+  <button (click)="createTopic()">Create New Topic</button>
 
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let topic of topics">
-    <td>{{ topic.topicTitle }}</td>
-    <td>{{ topic.topicDescription }}</td>
-    <td>
-      <button (click)="editTopic(topic.topicId)">Edit</button>
-      <button (click)="deleteTopic(topic.topicId)">Delete</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <table>
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let topic of topics">
+      <td>{{ topic.topicTitle }}</td>
+      <td>{{ topic.topicDescription }}</td>
+      <td>
+        <button (click)="editTopic(topic.topicId)">Edit</button>
+        <button (click)="deleteTopic(topic.topicId)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

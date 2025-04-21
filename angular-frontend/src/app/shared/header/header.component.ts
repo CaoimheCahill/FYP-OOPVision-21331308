@@ -24,7 +24,8 @@ export class HeaderComponent {
   constructor(
     private userService: UserService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   logout() {
     this.userService.logout();

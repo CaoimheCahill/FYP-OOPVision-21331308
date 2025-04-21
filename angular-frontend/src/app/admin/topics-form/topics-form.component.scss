@@ -4,14 +4,12 @@ $secondary-color: #B6E3FF;
 $text-color: #333;
 $button-color: #757575;
 
-/* Style for the heading */
 h2 {
   text-align: center;
   color: $button-color;
   margin: 1.5rem;
 }
 
-/* Form container styling */
 form {
   max-width: 500px;
   margin: 0 auto 2rem auto;
@@ -21,7 +19,6 @@ form {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  /* Style for labels */
   label {
     display: block;
     font-weight: bold;
@@ -30,7 +27,6 @@ form {
     color: #333;
   }
 
-  /* Style for text input and textarea */
   input[type="text"],
   textarea {
     width: 100%;
@@ -47,7 +43,6 @@ form {
     border-color: $primary-color;
   }
 
-  /* Style for the submit button */
   button[type="submit"] {
     display: inline-block;
     margin-top: 1.5rem;
@@ -64,20 +59,4 @@ form {
   button[type="submit"]:hover {
     background-color: #FFDD8B;
   }
-}
-
-
-
-
-// Footer Styles
-.footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: $secondary-color;
-  color: $text-color;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }

@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import {Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {HomeComponent} from './home/home.component';
 import {TopicsComponent} from './topics/topics.component';
@@ -18,25 +18,25 @@ import {AdminManageExampleComponent} from './admin/admin-manage-example/admin-ma
 import {AdminExampleFormComponent} from './admin/admin-example-form/admin-example-form.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route for home
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'topics', component: TopicsComponent },
-  { path: 'progress', component: ProgressComponent },
-  { path: 'topic/:id', component: TopicContentComponent },
-  { path: 'topic/:topicId/visualExample/:visualExampleId', component: VisualExampleComponent },
-  { path: 'topic/:topicId/quiz', component: QuizComponent },
-  { path: 'admin/home', component: AdminHomeComponent},
-  { path: 'admin/users', component: AdminUsersComponent},
-  { path: 'admin/topics', component: AdminTopicsComponent},
-  { path: 'admin/quizzes', component: AdminQuizzesComponent},
-  { path: 'admin/visualExamples', component: AdminVisualExamplesComponent},
-  { path: 'admin/topics/:topicId/examples', component: AdminManageExampleComponent },
-  { path: 'admin/topics/new', component: TopicsFormComponent },
-  { path: 'admin/topics/:id/edit', component: TopicsFormComponent },
-  { path: 'admin/topics/:topicId/visualExample/:visualExampleId', component: AdminExampleFormComponent },
-  { path: 'admin/topics/:topicId/visualExample/new', component: AdminExampleFormComponent },
-  { path: 'admin/quizzes/new', component: QuizWizardComponent },
-  { path: 'admin/quizzes/:id/edit', component: QuizWizardComponent }
+  {path: '', redirectTo: '/login', pathMatch: 'full'}, // Default route for home
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'topics', component: TopicsComponent},
+  {path: 'progress', component: ProgressComponent},
+  {path: 'topic/:id', component: TopicContentComponent},
+  {path: 'topic/:topicId/visualExample/:visualExampleId', component: VisualExampleComponent},
+  {path: 'topic/:topicId/quiz', component: QuizComponent},
+  {path: 'admin/home', component: AdminHomeComponent},
+  {path: 'admin/users', component: AdminUsersComponent},
+  {path: 'admin/topics', component: AdminTopicsComponent},
+  {path: 'admin/quizzes', component: AdminQuizzesComponent},
+  {path: 'admin/visualExamples', component: AdminVisualExamplesComponent},
+  {path: 'admin/topics/:topicId/examples', component: AdminManageExampleComponent},
+  {path: 'admin/topics/new', component: TopicsFormComponent},
+  {path: 'admin/topics/:id/edit', component: TopicsFormComponent},
+  {path: 'admin/topics/:topicId/visualExample/:visualExampleId', component: AdminExampleFormComponent},
+  {path: 'admin/topics/:topicId/visualExample/new', component: AdminExampleFormComponent},
+  {path: 'admin/quizzes/new', component: QuizWizardComponent},
+  {path: 'admin/quizzes/:id/edit', component: QuizWizardComponent}
 ];

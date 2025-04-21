@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {NgIf, NgOptimizedImage} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -10,8 +10,6 @@ import {Title} from '@angular/platform-browser';
 import {UserService} from '../service/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatCardModule} from '@angular/material/card';
-import {HeaderComponent} from '../shared/header/header.component';
-import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-registration',
@@ -25,13 +23,11 @@ import {FooterComponent} from '../shared/footer/footer.component';
     RouterLink,
     MatToolbarModule,
     MatCardModule,
-    HeaderComponent,
-    FooterComponent
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
-export class RegistrationComponent implements OnInit{
+export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder, private titleService: Title, private router: Router, private userService: UserService, private toastr: ToastrService) {
@@ -57,7 +53,7 @@ export class RegistrationComponent implements OnInit{
   passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { passwordMismatch: true };
+    return password === confirmPassword ? null : {passwordMismatch: true};
   }
 
   onSubmit(): void {
@@ -83,7 +79,7 @@ export class RegistrationComponent implements OnInit{
           }
         }
       );
-    }else{
+    } else {
       this.toastr.error('Please fill in all required fields');
     }
   }

@@ -1,24 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {Quiz, QuizService} from '../../service/quiz.service';
-import {Router, RouterLink} from '@angular/router';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {Title} from '@angular/platform-browser';
-import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-admin-quizzes',
   standalone: true,
-    imports: [CommonModule, MatToolbarModule, MatButtonModule, RouterLink, NgOptimizedImage, HeaderComponent],
+  imports: [CommonModule, MatToolbarModule, MatButtonModule],
   templateUrl: './admin-quizzes.component.html',
   styleUrl: './admin-quizzes.component.scss'
 })
-export class AdminQuizzesComponent implements OnInit{
+export class AdminQuizzesComponent implements OnInit {
   quizzes: Quiz[] = [];
   topicId = 1;
 
-  constructor(private quizService: QuizService, private router: Router, private titleService: Title) {}
+  constructor(private quizService: QuizService, private router: Router, private titleService: Title) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Quizzes');
@@ -33,7 +33,7 @@ export class AdminQuizzesComponent implements OnInit{
   }
 
   createQuiz(): void {
-    this.router.navigate(['/admin/quizzes/new'], { queryParams: { topicId: this.topicId } });
+    this.router.navigate(['/admin/quizzes/new'], {queryParams: {topicId: this.topicId}});
   }
 
   editQuiz(quizId: number): void {

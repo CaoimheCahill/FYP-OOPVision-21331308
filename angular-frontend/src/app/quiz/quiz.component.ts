@@ -1,15 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
 import {FormsModule} from '@angular/forms';
 import {catchError, switchMap} from 'rxjs';
 import {ProgressService} from '../service/progress.service';
-import {HeaderComponent} from '../shared/header/header.component';
-import {FooterComponent} from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-quiz',
@@ -17,14 +15,11 @@ import {FooterComponent} from '../shared/footer/footer.component';
   imports: [
     MatButtonModule,
     MatToolbarModule,
-    NgOptimizedImage,
     RouterLink,
     FormsModule,
     NgForOf,
     NgIf,
-    NgClass,
-    HeaderComponent,
-    FooterComponent
+    NgClass
   ],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss'
@@ -40,7 +35,7 @@ export class QuizComponent implements OnInit {
   showResults: boolean = false;
   finalResult: string = '';
 
-  constructor(private titleService: Title, private quizService: QuizService, private route:ActivatedRoute, private router:Router, private progressService: ProgressService) {
+  constructor(private titleService: Title, private quizService: QuizService, private route: ActivatedRoute, private router: Router, private progressService: ProgressService) {
   }
 
   ngOnInit(): void {

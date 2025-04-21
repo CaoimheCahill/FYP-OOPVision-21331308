@@ -1,15 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {CommonModule, DecimalPipe, NgOptimizedImage} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {CommonModule, DecimalPipe} from "@angular/common";
 import {Title} from '@angular/platform-browser';
 import {ProgressService} from '../service/progress.service';
 import {TopicService} from '../service/topic.service';
 import {UserService} from '../service/user.service';
-import {forkJoin, map} from 'rxjs';
-import {HeaderComponent} from '../shared/header/header.component';
-import {FooterComponent} from '../shared/footer/footer.component';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-progress',
@@ -23,14 +20,15 @@ import {FooterComponent} from '../shared/footer/footer.component';
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.scss'
 })
-export class ProgressComponent implements OnInit{
+export class ProgressComponent implements OnInit {
 
   completionPercentage: number = 0;
   totalTopics: number = 0;
   userId: number | null | undefined;
   totalTopicsCompleted: number = 0;
 
-  constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService, private userService: UserService) {}
+  constructor(private titleService: Title, private progressService: ProgressService, private topicService: TopicService, private userService: UserService) {
+  }
 
   progressData: Array<{ topicId: number; quizScore?: number; topicTitle?: string; completed: boolean }> = [];
 
@@ -42,7 +40,7 @@ export class ProgressComponent implements OnInit{
       progressData: this.progressService.getUserProgress(this.userId),
       allTopics: this.topicService.getTopics()
     })
-      .subscribe(({ progressData, allTopics }) => {
+      .subscribe(({progressData, allTopics}) => {
         const nameById = new Map(allTopics.map(t => [t.topicId, t.topicTitle]));
 
         const enriched = (progressData.progress || []).map((item: { topicId: number; }) => ({

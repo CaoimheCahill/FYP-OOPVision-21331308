@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -27,7 +27,8 @@ export class QuizService {
 
   private apiUrl = environment.apiBaseUrl + '/api/quiz';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getQuizByTopicId(topicId: number): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(`${this.apiUrl}/${topicId}`);
@@ -55,7 +56,7 @@ export class QuizService {
 
   deleteQuiz(quizId: number): Observable<any> {
     return this.http.delete(`${environment.apiBaseUrl}/api/admin/quizzes/${quizId}`,
-      { responseType: 'text' as 'json' });
+      {responseType: 'text' as 'json'});
   }
 
   getQuizById(quizId: number): Observable<Quiz> {
