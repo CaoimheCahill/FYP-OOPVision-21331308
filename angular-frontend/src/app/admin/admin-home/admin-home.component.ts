@@ -32,8 +32,6 @@ export class AdminHomeComponent implements OnInit {
         this.users = users;
         this.adminCount = users.filter(u => u.userRole === 'ADMIN').length;
         this.regularCount = users.filter(u => u.userRole === 'USER').length;
-        console.log(this.users);
-        console.log(this.regularCount);
       },
       error: (error) => {
         console.error('Error fetching users:', error);

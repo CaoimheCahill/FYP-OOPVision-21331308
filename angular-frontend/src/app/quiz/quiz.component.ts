@@ -112,8 +112,6 @@ export class QuizComponent implements OnInit {
       this.finalResult = `${this.score}/${this.questions.length}`;
       this.progressService.markQuizFinished(this.topicId, this.finalResult).subscribe({
         next: () => {
-          console.log(this.finalResult);
-          // Optionally, do something on success. For now, we simply show the results.
           this.showResults = true;
         },
         error: (err: any) => {

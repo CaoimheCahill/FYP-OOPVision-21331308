@@ -218,7 +218,6 @@ public class AdminController {
         Image imageDetails = new Image();
         imageDetails.setImageSide(imageSide);
         imageDetails.setOrderIndex(orderIndex != null ? orderIndex : 0);
-        System.out.println(imageDetails);
         Image created = imageService.addImage(visualExampleId, file, imageDetails);
         return ResponseEntity.ok(created);
     }

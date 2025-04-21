@@ -75,7 +75,6 @@ public class ProgressService {
     public void markQuizFinished(int userId, int topicId, String score) {
         Optional<Progress> progressOpt = progressRepository.findByUserIdAndTopicId(userId, topicId);
         Progress progress;
-        System.out.println(score);
         if (progressOpt.isPresent()) {
             progress = progressOpt.get();
             progress.setCompletedQuiz(true);

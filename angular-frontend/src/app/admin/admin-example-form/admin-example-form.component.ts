@@ -116,7 +116,6 @@ export class AdminExampleFormComponent implements OnInit {
     Promise.all(deletionPromises)
       .then(() => {
         this.parts.splice(index, 1);
-        console.log('Part and its images deleted successfully.');
       })
       .catch(err => {
         console.error('Error deleting images for part:', err);

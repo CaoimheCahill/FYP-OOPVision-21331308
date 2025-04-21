@@ -30,7 +30,6 @@ public class ProgressController {
     // Endpoint to get user progress by userId
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUserProgress(@PathVariable Integer userId) {
-        System.out.println("Fetching progress for userId: " + userId);
         List<Progress> progressList = progressService.getUserProgress(userId);
         if (progressList.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -59,7 +58,6 @@ public class ProgressController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         int userId = userOpt.get().getUserId();
-        System.out.println(request.getScore());
         progressService.markQuizFinished(userId, request.getTopicId(), request.getScore());
         return ResponseEntity.ok().build();
     }

@@ -61,7 +61,6 @@ export class ProgressComponent implements OnInit {
   }
 
   get offset() {
-    console.log(this.completionPercentage);
     return this.circumference * (1 - this.completionPercentage / 100);
   }
 
