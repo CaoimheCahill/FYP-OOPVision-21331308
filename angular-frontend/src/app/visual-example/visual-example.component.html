@@ -4,12 +4,12 @@
 
 <div class="image-container">
   <div class="image-box">
-    <img *ngIf="leftImages.length > 0" [src]="leftImages[currentIndex]?.imagePath" alt="Left Image"
+    <img *ngIf="leftImages.length > 0" [src]="leftImages[currentIndex].imagePath" alt="Left Image"
          (error)="onImageError($event)">
   </div>
 
   <div class="image-box">
-    <img *ngIf="rightImages.length > 0" [src]="rightImages[currentIndex]?.imagePath" alt="Right Image"
+    <img *ngIf="rightImages.length > 0" [src]="rightImages[currentIndex].imagePath" alt="Right Image"
          (error)="onImageError($event)">
   </div>
 </div>
