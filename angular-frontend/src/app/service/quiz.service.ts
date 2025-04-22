@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -76,6 +76,6 @@ export class QuizService {
   }
 
   deleteQuestion(questionId: number): Observable<any> {
-    return this.http.delete(`${environment.apiBaseUrl}/api/admin/questions/${questionId}`);
+    return this.http.delete(`${environment.apiBaseUrl}/api/admin/questions/${questionId}`, {responseType: 'text' as 'json'});
   }
 }
