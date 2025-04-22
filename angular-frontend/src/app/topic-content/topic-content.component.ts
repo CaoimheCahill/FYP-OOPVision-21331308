@@ -5,10 +5,11 @@ import {CommonModule, NgForOf, NgIf} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {Title} from '@angular/platform-browser';
-import {VisualExample, VisualExampleService} from '../service/visual-example.service';
+import {VisualExample} from '../service/visual-example.service';
 import {MarkdownModule} from 'ngx-markdown';
 import {Quiz, QuizService} from '../service/quiz.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ImageService} from '../service/image.service';
 
 @Component({
   selector: 'app-topic-content',
@@ -34,7 +35,7 @@ export class TopicContentComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private topicService: TopicService,
-    private visualExampleService: VisualExampleService,
+    private imageService: ImageService,
     private quizService: QuizService,
     private titleService: Title
   ) {
@@ -48,7 +49,7 @@ export class TopicContentComponent implements OnInit {
 
         if (this.topic) {
           this.titleService.setTitle(this.topic.topicTitle);
-          this.visualExampleService.getVisualExamplesByTopic(this.topic.topicId)
+          this.imageService.getVisualExamplesByTopic(this.topic.topicId)
             .subscribe({
               next: (examples) => this.visualExamples = examples,
               error: (err) => console.error('Error fetching visual examples:', err)
