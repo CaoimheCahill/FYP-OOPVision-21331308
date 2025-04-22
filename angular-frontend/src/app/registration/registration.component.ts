@@ -47,6 +47,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.logout();
     this.titleService.setTitle('Registration');
   }
 
