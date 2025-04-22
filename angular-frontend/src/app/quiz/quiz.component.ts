@@ -84,7 +84,7 @@ export class QuizComponent implements OnInit {
 
   updateShortAnswer(event: any): void {
     if (this.currentQuestion) {
-      this.currentQuestion.userAnswer = event.target.value; // Save typed answer
+      this.currentQuestion.userAnswer = event.target.value;
     }
   }
 

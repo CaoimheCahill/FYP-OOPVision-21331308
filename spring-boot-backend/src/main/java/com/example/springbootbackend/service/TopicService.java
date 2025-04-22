@@ -24,7 +24,6 @@ public class TopicService {
         Topic existing = getTopicById(id);
         existing.setTopicTitle(updatedTopic.getTopicTitle());
         existing.setTopicDescription(updatedTopic.getTopicDescription());
-        // Handle any logic for images or quizzes if needed
         return topicRepository.save(existing);
     }
 

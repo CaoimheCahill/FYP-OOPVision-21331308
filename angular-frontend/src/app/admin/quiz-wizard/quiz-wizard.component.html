@@ -47,7 +47,6 @@
             <input matInput formControlName="correctAnswer"/>
           </mat-form-field>
 
-          <!-- Options for Multiple Choice -->
           <div
             *ngIf="qControl.get('questionType')?.value === 'MULTIPLE_CHOICE'"
             formArrayName="options"
@@ -74,12 +73,10 @@
             </button>
           </div>
 
-          <!-- Fixed display for True/False -->
           <div *ngIf="qControl.get('questionType')?.value === 'TRUE_FALSE'">
             <p>Options: True, False</p>
           </div>
 
-          <!-- Message for Short Answer -->
           <div *ngIf="qControl.get('questionType')?.value === 'SHORT_ANSWER'">
             <p>No options needed for short answer questions.</p>
           </div>

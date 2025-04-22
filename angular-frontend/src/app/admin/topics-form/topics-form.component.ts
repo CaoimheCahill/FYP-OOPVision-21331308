@@ -45,7 +45,7 @@ export class TopicsFormComponent implements OnInit {
       const idParam = params.get('id');
       if (idParam) {
         this.isEditMode = true;
-        this.topicId = +idParam; // convert to number
+        this.topicId = +idParam;
         this.loadTopic(this.topicId);
       }
     });

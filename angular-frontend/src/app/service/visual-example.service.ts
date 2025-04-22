@@ -18,7 +18,6 @@ export class VisualExampleService {
   constructor(private http: HttpClient) {
   }
 
-  // Get all visual examples for a given topic
   getVisualExamplesByTopic(topicId: number): Observable<VisualExample[]> {
     return this.http.get<VisualExample[]>(`${this.apiUrl}/topics/${topicId}`);
   }

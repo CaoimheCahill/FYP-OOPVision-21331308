@@ -112,7 +112,7 @@ export class AdminExampleFormComponent implements OnInit {
       );
     }
 
-    // If there are images to delete, wait for deletion before removing the part.
+    // If there are images to delete, wait for till they are deleted before removing the part.
     Promise.all(deletionPromises)
       .then(() => {
         this.parts.splice(index, 1);
@@ -123,7 +123,7 @@ export class AdminExampleFormComponent implements OnInit {
   }
 
   save(): void {
-    const formValue = this.exampleForm.value; // { name: ... }
+    const formValue = this.exampleForm.value;
     if (this.visualExampleId) {
       // Update existing visual example
       this.visualExampleService.updateVisualExample(this.visualExampleId, {
@@ -139,7 +139,7 @@ export class AdminExampleFormComponent implements OnInit {
       // Create new visual example
       this.visualExampleService.createVisualExample(this.topicId, {name: formValue.name}).subscribe({
         next: (createdExample) => {
-          // Save the newly created visualExampleId and then save parts
+          // Save the new created visualExampleId and then save parts
           this.visualExampleId = createdExample.visualExampleId;
           this.saveParts(createdExample.visualExampleId);
         },

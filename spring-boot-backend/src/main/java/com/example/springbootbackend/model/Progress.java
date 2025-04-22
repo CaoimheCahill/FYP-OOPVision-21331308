@@ -15,10 +15,10 @@ public class Progress {
     private Integer userId;
     private Integer topicId;
 
-    private boolean viewedExample; // True when user has completed the example
+    private boolean viewedExample;
     private LocalDateTime viewedExampleAt;
 
-    private boolean completedQuiz; // True when user has completed the quiz
+    private boolean completedQuiz;
     private LocalDateTime completedQuizAt;
 
     private String quizScore;

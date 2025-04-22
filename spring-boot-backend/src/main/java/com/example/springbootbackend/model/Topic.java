@@ -11,7 +11,6 @@ public class Topic {
     private String topicTitle;
     private String topicDescription;
 
-    // Getters and setters
     public int getTopicId() {
         return topicId;
     }

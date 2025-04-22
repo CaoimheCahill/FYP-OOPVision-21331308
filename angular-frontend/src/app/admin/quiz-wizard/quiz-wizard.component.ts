@@ -81,7 +81,7 @@ export class QuizWizardComponent implements OnInit {
     return this.questionsStepForm.get('questions') as FormArray;
   }
 
-  // Load the quiz details and associated questions for editing
+  // Load the quiz details and questions for editing
   loadQuizData(quizId: number): void {
     // Load quiz details
     this.quizService.getQuizById(quizId).subscribe({

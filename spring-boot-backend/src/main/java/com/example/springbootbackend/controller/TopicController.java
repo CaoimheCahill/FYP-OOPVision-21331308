@@ -24,10 +24,9 @@ public class TopicController {
         return topicRepository.findAll();
     }
 
-    // Endpoint to return the total count of topics
     @GetMapping("/count")
     public ResponseEntity<Long> getTotalTopics() {
-        long totalTopics = topicRepository.count();  // Get the count from the database
+        long totalTopics = topicRepository.count();
         return ResponseEntity.ok(totalTopics);
     }
 

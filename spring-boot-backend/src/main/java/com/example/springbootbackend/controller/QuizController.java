@@ -16,7 +16,6 @@ public class QuizController {
     @Autowired
     private QuizService quizService;
 
-    // Get quizzes by subtopic ID
     @GetMapping("/{topicId}")
     public List<Quizzes> getQuizzesByTopic(@PathVariable Integer topicId) {
         return quizService.getQuizzesByTopicId(topicId);
@@ -29,7 +28,6 @@ public class QuizController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Get questions by quiz ID
     @GetMapping("/{quizId}/questions")
     public List<QuizQuestions> getQuestionsByQuiz(@PathVariable Integer quizId) {
         return quizService.getQuestionsByQuizId(quizId);

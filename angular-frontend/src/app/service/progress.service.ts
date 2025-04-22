@@ -9,7 +9,7 @@ import {environment} from '../environments/environment.prod';
 })
 export class ProgressService {
 
-  private apiUrl = environment.apiBaseUrl + '/api/progress';  // Replace with your backend URL
+  private apiUrl = environment.apiBaseUrl + '/api/progress';
 
   constructor(private http: HttpClient) {
   }

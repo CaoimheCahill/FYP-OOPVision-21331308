@@ -65,7 +65,6 @@ export class RegistrationComponent implements OnInit {
         (response) => {
 
           if (response.token) {
-            // Store the token in localStorage or sessionStorage
             this.userService.saveToken(response.token);
           }
           this.toastr.success('Registration successful!');
