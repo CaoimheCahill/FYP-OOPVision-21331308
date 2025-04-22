@@ -261,7 +261,7 @@ export class QuizWizardComponent implements OnInit {
     Promise.all(requests)
       .then(() => {
         alert('Quiz and questions saved successfully!');
-        this.router.navigate(['/admin/quizzes']);
+        this.router.navigate(['/admin/topics', this.topicId, 'quizzes']);
       })
       .catch(err => console.error('Error saving questions:', err));
   }
