@@ -24,7 +24,7 @@
       <ng-container *ngIf="quizzes.length > 0; else noQuiz">
         <button *ngFor="let quiz of quizzes"
                 class="btn"
-                [routerLink]="['/topic', topic.topicId, 'quiz']">
+                [routerLink]="['/topic', topic.topicId, 'quiz', quiz.quizId]">
           {{ quiz.title }} Quiz
         </button>
       </ng-container>

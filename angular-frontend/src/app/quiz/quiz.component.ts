@@ -6,7 +6,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Title} from '@angular/platform-browser';
 import {Quiz, QuizQuestion, QuizService} from '../service/quiz.service';
 import {FormsModule} from '@angular/forms';
-import {catchError, switchMap} from 'rxjs';
+import {catchError, of, switchMap, throwError} from 'rxjs';
 import {ProgressService} from '../service/progress.service';
 
 @Component({
@@ -26,6 +26,7 @@ import {ProgressService} from '../service/progress.service';
 })
 export class QuizComponent implements OnInit {
   topicId!: number;
+  quizId!: number;
   questions: QuizQuestion[] = [];
   currentQuestion: QuizQuestion | null = null;
   currentStep = 0;
@@ -42,28 +43,22 @@ export class QuizComponent implements OnInit {
     this.titleService.setTitle('Quiz');
     this.route.params.subscribe(params => {
       this.topicId = +params['topicId'];
-      this.loadQuizQuestions(this.topicId);
+      this.quizId = +params['quizId'];
+      this.loadQuizQuestions(this.quizId);
     });
   }
 
-  loadQuizQuestions(topicId: number): void {
-    this.quizService.getQuizByTopicId(topicId).pipe(
-      switchMap((quizArray: Quiz[]) => {
-        if (!quizArray || quizArray.length === 0) {
-          throw new Error('No quiz found for this topic.');
+  loadQuizQuestions(quizId: number): void {
+    this.quizService.getQuizByQuizId(quizId).pipe(
+      switchMap((quiz: Quiz) => {
+        if (!quiz || !quiz.quizId) {
+          return throwError(() => new Error('Quiz not found or ID undefined.'));
         }
-
-        const quiz = quizArray[0];
-
-        if (!quiz.quizId) {
-          throw new Error('Quiz ID is undefined.');
-        }
-
         return this.quizService.getQuestionsByQuizId(quiz.quizId);
       }),
       catchError(error => {
         console.error('Error fetching quiz or questions:', error);
-        return [];
+        return of<QuizQuestion[]>([]);
       })
     ).subscribe((questions: QuizQuestion[]) => {
       this.questions = questions.map(question => ({

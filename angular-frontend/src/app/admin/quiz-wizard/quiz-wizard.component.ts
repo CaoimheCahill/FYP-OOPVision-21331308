@@ -31,7 +31,7 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./quiz-wizard.component.scss']
 })
 export class QuizWizardComponent implements OnInit {
-  // Form for quiz details (title and topicId)
+  // Form for quiz details (title)
   quizDetailsForm!: FormGroup;
   // Form group that contains the questions form array
   questionsStepForm!: FormGroup;
@@ -53,7 +53,6 @@ export class QuizWizardComponent implements OnInit {
     this.titleService.setTitle('Manage Quizzes');
     this.quizDetailsForm = this.fb.group({
       title: ['', Validators.required],
-      topicId: [null, Validators.required]
     });
 
     this.questionsStepForm = this.fb.group({
@@ -191,9 +190,7 @@ export class QuizWizardComponent implements OnInit {
 
 
   submitWizard(): void {
-    const quizData = this.quizDetailsForm.value; // { title, topicId }
-
-
+    const { title } = this.quizDetailsForm.value;
     const rawQuestionsData = this.questionsFormArray.getRawValue();
 
     // Convert any array in "options" to a JSON string
@@ -216,7 +213,7 @@ export class QuizWizardComponent implements OnInit {
 
     if (this.isEditMode && this.quizId) {
       // Update existing quiz
-      this.quizService.updateQuiz(this.quizId, quizData).subscribe({
+      this.quizService.updateQuiz(this.quizId, { title, topicId: this.topicId! }).subscribe({
         next: () => {
           this.saveQuestions(this.quizId, questionsData);
         },
@@ -224,12 +221,11 @@ export class QuizWizardComponent implements OnInit {
       });
     } else {
       // Create a new quiz
-      const topicId = quizData.topicId;
-      if (!topicId) {
+      if (!this.topicId) {
         alert('No topicId specified!');
         return;
       }
-      this.quizService.createQuiz(topicId, quizData).subscribe({
+      this.quizService.createQuiz(this.topicId, { title }).subscribe({
         next: (newQuiz: Quiz) => {
           this.saveQuestions(newQuiz.quizId!, questionsData);
         },
