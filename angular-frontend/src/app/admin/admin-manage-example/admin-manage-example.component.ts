@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {CommonModule, NgForOf} from '@angular/common';
 import {Title} from '@angular/platform-browser';
+import {Topic, TopicService} from '../../service/topic.service';
 
 @Component({
   selector: 'app-admin-manage-example',
@@ -21,18 +22,22 @@ import {Title} from '@angular/platform-browser';
 export class AdminManageExampleComponent implements OnInit {
   topicId!: number;
   visualExamples: VisualExample[] = [];
+  topicTitle = '';
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private visualExampleService: VisualExampleService,
-    private titleService: Title
+    private titleService: Title,
+    private topicService: TopicService
   ) {
   }
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Examples');
     this.topicId = +this.route.snapshot.paramMap.get('topicId')!;
+    this.loadTopic();
     this.loadVisualExamples();
   }
 
@@ -40,6 +45,16 @@ export class AdminManageExampleComponent implements OnInit {
     this.visualExampleService.getVisualExamplesByTopic(this.topicId).subscribe({
       next: (examples) => (this.visualExamples = examples),
       error: (err) => console.error('Error loading visual examples:', err)
+    });
+  }
+
+  loadTopic(): void {
+    this.topicService.getTopicById(this.topicId).subscribe({
+      next: (topic: Topic) => {
+        this.topicTitle = topic.topicTitle;
+        this.titleService.setTitle(`Manage Visual Examples - ${this.topicTitle}`);
+      },
+      error: (err) => console.error('Error loading topic:', err)
     });
   }
 
