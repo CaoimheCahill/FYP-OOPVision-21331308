@@ -68,10 +68,9 @@ This application bridges the gap by offering both visual and interactive learnin
 
 ---
 
----
-
 ## **Deployed Version**
 
+- You will need the azure database information and environment variables to run this but you can check out the deployed version! 
 - Link to Deployed Application:
 - [OOPVision](https://orange-water-01553bd1e.5.azurestaticapps.net/)
 
