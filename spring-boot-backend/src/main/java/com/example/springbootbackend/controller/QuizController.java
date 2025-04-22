@@ -4,6 +4,7 @@ import com.example.springbootbackend.model.QuizQuestions;
 import com.example.springbootbackend.model.Quizzes;
 import com.example.springbootbackend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,13 @@ public class QuizController {
     @GetMapping("/{topicId}")
     public List<Quizzes> getQuizzesByTopic(@PathVariable Integer topicId) {
         return quizService.getQuizzesByTopicId(topicId);
+    }
+
+    @GetMapping("/quizzes/{quizId}")
+    public ResponseEntity<Quizzes> getQuizByQuizId(@PathVariable Integer quizId) {
+        return quizService.getQuizById(quizId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     // Get questions by quiz ID

@@ -1,0 +1,22 @@
+<div class="manage-quizzes">
+  <h2>Manage Quizzes for Topic {{ topicId }}</h2>
+  <button (click)="createQuiz()">Create New Quiz</button>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let quiz of quizzes">
+      <td>{{ quiz.title }}</td>
+      <td>
+        <button (click)="editQuiz(quiz.quizId)">Edit</button>
+        <button (click)="deleteQuiz(quiz.quizId)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

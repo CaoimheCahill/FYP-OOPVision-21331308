@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Quiz, QuizService} from '../../service/quiz.service';
+import {QuizService} from '../../service/quiz.service';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {Title} from '@angular/platform-browser';
+import {Topic, TopicService} from '../../service/topic.service';
 
 @Component({
   selector: 'app-admin-quizzes',
@@ -14,39 +15,24 @@ import {Title} from '@angular/platform-browser';
   styleUrl: './admin-quizzes.component.scss'
 })
 export class AdminQuizzesComponent implements OnInit {
-  quizzes: Quiz[] = [];
-  topicId = 1;
+  topics: Topic[] = [];
 
-  constructor(private quizService: QuizService, private router: Router, private titleService: Title) {
+  constructor(private topicService: TopicService, private quizService: QuizService, private router: Router, private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.titleService.setTitle('Manage Quizzes');
-    this.loadQuizzes();
+    this.loadTopics();
   }
 
-  loadQuizzes(): void {
-    this.quizService.getAllQuizzes().subscribe({
-      next: (data) => this.quizzes = data,
-      error: (err) => console.error('Error fetching quizzes:', err)
+  loadTopics(): void {
+    this.topicService.getTopics().subscribe({
+      next: (data) => this.topics = data,
+      error: (err) => console.error('Error fetching topics:', err)
     });
   }
 
-  createQuiz(): void {
-    this.router.navigate(['/admin/quizzes/new'], {queryParams: {topicId: this.topicId}});
+  manageQuizzes(topic: Topic): void {
+    this.router.navigate(['/admin/topics', topic.topicId, 'quizzes']);
   }
-
-  editQuiz(quizId: number): void {
-    this.router.navigate(['/admin/quizzes', quizId, 'edit']);
-  }
-
-  deleteQuiz(quizId: number): void {
-    if (confirm('Are you sure you want to delete this quiz?')) {
-      this.quizService.deleteQuiz(quizId).subscribe({
-        next: () => this.loadQuizzes(),
-        error: (err) => console.error('Error deleting quiz:', err)
-      });
-    }
-  }
-
 }
