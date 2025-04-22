@@ -23,7 +23,6 @@ export class AdminUsersComponent implements OnInit {
   constructor(private userService: UserService, private titleService: Title) {
   }
 
-  displayedColumns: string[] = ['email', 'role', 'actions'];
   users: any[] = [];
 
   ngOnInit(): void {

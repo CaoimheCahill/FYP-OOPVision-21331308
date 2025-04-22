@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {QuizService} from '../../service/quiz.service';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -17,7 +16,7 @@ import {Topic, TopicService} from '../../service/topic.service';
 export class AdminQuizzesComponent implements OnInit {
   topics: Topic[] = [];
 
-  constructor(private topicService: TopicService, private quizService: QuizService, private router: Router, private titleService: Title) {
+  constructor(private topicService: TopicService, private router: Router, private titleService: Title) {
   }
 
   ngOnInit(): void {
