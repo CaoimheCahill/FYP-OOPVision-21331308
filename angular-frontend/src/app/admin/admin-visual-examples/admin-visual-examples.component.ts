@@ -24,7 +24,7 @@ export class AdminVisualExamplesComponent implements OnInit{
   constructor(private topicService: TopicService, private router: Router, private titleService: Title) {}
 
   ngOnInit(): void {
-    this.titleService.setTitle('Manage Users');
+    this.titleService.setTitle('Manage Visual Examples');
     this.loadTopics();
   }
 

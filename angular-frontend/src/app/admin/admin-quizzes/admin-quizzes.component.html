@@ -1,27 +1,17 @@
 <div class="admin-quizzes">
-  <h2>Manage Quizzes</h2>
-
-  <button (click)="createQuiz()">
-    Create New Quiz
-  </button>
-
+  <h2>Manage Quizzes by Topic</h2>
   <table>
     <thead>
     <tr>
-      <th>Title</th>
-      <th>Topic Name</th>
-      <th>Topic Id</th>
+      <th>Topic Title</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let quiz of quizzes">
-      <td>{{ quiz.title }}</td>
-      <td>{{ quiz.topicTitle }}</td>
-      <td>{{ quiz.topicId }}</td>
+    <tr *ngFor="let topic of topics">
+      <td>{{ topic.topicTitle }}</td>
       <td>
-        <button (click)="editQuiz(quiz.quizId)">Edit</button>
-        <button (click)="deleteQuiz(quiz.quizId)">Delete</button>
+        <button (click)="manageQuizzes(topic)">Manage Quizzes</button>
       </td>
     </tr>
     </tbody>
